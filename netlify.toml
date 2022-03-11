@@ -5,3 +5,11 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
     Content-Security-Policy = "frame-ancestors https://www.facebook.com"
+    X-Bar = "baz"
+
+[[redirects]]
+  from = "/functions"
+  to = "https://permatweet.netlify.com"
+  status = 200
+  force = true
+  headers = {X-Foo = "bar", X-Custom-Token = "my custom token"}
