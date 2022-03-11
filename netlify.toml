@@ -1,6 +1,4 @@
-[[redirects]]
-  from = "/functions"
-  to = "https://permatweet.netlify.com"
-  status = 200
-  force = true
-  headers = {X-From = "netlify", X-Custom-Token = "my custom token"}
+[[headers]]
+  for = "/functions"
+    [headers.values]
+    Access-Control-Allow-Origin = "https://permatweet.netlify.com"
