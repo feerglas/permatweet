@@ -24,6 +24,7 @@ const handleError = (error) => {
 
 exports.handler = async (event, context) => {
   try {
+    console.log(`request from host: ${event.multiValueHeaders.host}`)
     const host = event.multiValueHeaders.host[0]
     const isNetlify = host === 'permatweet.netlify.app'
     const isLocalhostNuxt = host === 'localhost:3000'
