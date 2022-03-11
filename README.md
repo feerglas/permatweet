@@ -8,7 +8,7 @@ Store specific tweets on the Arweave blockchain on demand.
 
 ### Node version
 
-Make sure to use the node version specified in `.nvmrc` either using tools like nvm, asdf or similar or by installing the corresponding node version manually.
+Make sure to use the node version specified in `.nvmrc` either by using tools like nvm, asdf or similar or by installing the corresponding node version manually.
 
 ### Install dependencies
 
