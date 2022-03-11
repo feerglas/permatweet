@@ -1,6 +1,16 @@
 const Twitter = require('twitter-v2')
 const { TWITTER_API_BAERER } = process.env
 
+/**
+ * Sample request url for this function.
+ *
+ * Remote:
+ * https://permatweet.netlify.app/.netlify/functions/twitter?id=1502265834328240145
+ *
+ * Local (after starting netlify dev):
+ * http://localhost:8888/.netlify/functions/twitter?id=1502265834328240145
+ */
+
 const handleError = (error) => {
   const message = 'Failed fetching twitter data: ' + error
 
