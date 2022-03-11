@@ -26,6 +26,10 @@ exports.handler = async (event, context) => {
   console.log(event)
   console.log(context)
   try {
+    if (event.multiValueHeaders.host[0] !== 'permatweet.netlify.app') {
+      return handleError('... the domain making the request is not allowed')
+    }
+
     // only handle get requests
     if (event.httpMethod !== 'GET') {
       return handleError('... we only accept GET requests')
