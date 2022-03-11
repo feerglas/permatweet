@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
 
     // prevent other domains to fetch from our function
     if (!isNetlify && !isLocalhostNetlify && !isLocalhostNuxt) {
-      return handleError('... the domain making the request is not allowed')
+      return handleError('... the host making the request is not allowed')
     }
 
     // only handle get requests
