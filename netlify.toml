@@ -1,4 +1,7 @@
 [[headers]]
-  for = "/functions/*"
-    [headers.values]
-    Access-Control-Allow-Origin = "https://permatweet.netlify.com"
+  for = "/*"
+
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "frame-ancestors https://www.facebook.com"
