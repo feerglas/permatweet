@@ -24,16 +24,23 @@ const handleError = (error) => {
 
 exports.handler = async (event) => {
   try {
-    const tweetId = event.queryStringParameters.id || false
+    // only handle get requests
+    if (event.httpMethod !== 'GET') {
+      return handleError('... we only accept GET requests')
+    }
 
+    // make sure we get an id parameter
+    const tweetId = event.queryStringParameters.id || false
     if (!tweetId) {
       return handleError('id parameter is required')
     }
 
+    // init twitter client
     const client = new Twitter({
       bearer_token: TWITTER_API_BAERER
     })
 
+    // get tweets by id
     // API Reference: https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets
     const { data: tweet, errors } = await client.get('tweets', {
       ids: tweetId,
