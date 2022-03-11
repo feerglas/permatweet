@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/functions/twitter"
+  from = "/functions"
   to = "https://permatweet.netlify.com"
   status = 200
   force = true
