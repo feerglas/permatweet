@@ -45,4 +45,3 @@ https://permatweet.netlify.app/
 - Download Google Webfont and bundle together with app
 - add favicon
 - restrict function requests to subdomain of the app
-- restrict function requests to get-requests only
