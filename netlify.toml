@@ -1,4 +1,4 @@
 [[headers]]
-  for = "/functions"
+  for = "/functions/*"
     [headers.values]
     Access-Control-Allow-Origin = "https://permatweet.netlify.com"
