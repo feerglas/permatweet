@@ -23,9 +23,17 @@ const handleError = (error) => {
 }
 
 exports.handler = async (event, context) => {
-  console.log(event)
-  console.log(context)
   try {
+    const host = event.multiValueHeaders.host[0]
+    const isNetlify = host === 'permatweet.netlify.app'
+    const isLocalhostNuxt = host === 'localhost:3000'
+    const isLocalhostNetlify = host === 'localhost:8888'
+
+    // prevent other domains to fetch from our function
+    if (!isNetlify && !isLocalhostNetlify && !isLocalhostNuxt) {
+      return handleError('... the domain making the request is not allowed')
+    }
+
     // only handle get requests
     if (event.httpMethod !== 'GET') {
       return handleError('... we only accept GET requests')
