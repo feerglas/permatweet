@@ -22,7 +22,9 @@ const handleError = (error) => {
   }
 }
 
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
+  console.log(event)
+  console.log(context)
   try {
     // only handle get requests
     if (event.httpMethod !== 'GET') {
