@@ -87,17 +87,6 @@ const config = {
   }
 }
 
-const handleError = (error) => {
-  const message = 'Failed fetching twitter data: ' + error
-
-  console.log(message)
-
-  return {
-    statusCode: 500,
-    body: JSON.stringify({ error: message })
-  }
-}
-
 const getRequestUrl = (id) => {
   const params = [
     `expansions=${config.params.expansions.join(',')}`,
@@ -115,15 +104,16 @@ exports.handler = async (event, context) => {
   try {
     // only handle get requests
     if (event.httpMethod !== 'GET') {
-      return handleError('... we only accept GET requests')
+      throw (new Error('... we only accept GET requests'))
     }
 
     // make sure we get an id parameter
     const tweetId = event.queryStringParameters.id || false
     if (!tweetId) {
-      return handleError('id parameter is required')
+      throw (new Error('id parameter is required'))
     }
 
+    // fetch from api
     const data = await fetch(getRequestUrl(tweetId), {
       method: 'get',
       headers: {
@@ -131,13 +121,27 @@ exports.handler = async (event, context) => {
         Authorization: `Bearer ${TWITTER_API_BAERER}`
       }
     })
+
+    // parse result
     const result = await data.json()
+
+    // make sure we did not get any errors
+    if (Object.keys(result).includes('errors')) {
+      throw (new Error(result.errors[0].detail))
+    }
 
     return {
       statusCode: 200,
       body: JSON.stringify(result)
     }
   } catch (error) {
-    return handleError(error)
+    const message = 'Failed fetching twitter data: ' + error
+
+    console.log(message)
+
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: message })
+    }
   }
 }
