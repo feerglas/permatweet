@@ -44,7 +44,5 @@ https://permatweet.netlify.app/
 ## Todo
 - Download Google Webfont and bundle together with app
 - add favicon
-- restrict function requests to subdomain of the app. currently, everybody can call our twitter function on netlify.
 - use https://github.com/wdl/tweet-json-to-html to generate tweet html from tweet json
 - use sanitize-html to prevent xss attacks from tweet html
-
