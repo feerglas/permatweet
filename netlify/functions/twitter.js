@@ -1,6 +1,3 @@
-const Twitter = require('twitter-v2')
-const { TWITTER_API_BAERER } = process.env
-
 /**
  * Sample request url for this function.
  *
@@ -11,6 +8,85 @@ const { TWITTER_API_BAERER } = process.env
  * http://localhost:8888/.netlify/functions/twitter?id=1502265834328240145
  */
 
+const fetch = require('node-fetch')
+const { TWITTER_API_BAERER } = process.env
+const config = {
+  apiUrl: 'https://api.twitter.com/2/tweets',
+  params: {
+    expansions: [
+      'attachments.poll_ids',
+      'attachments.media_keys',
+      'author_id',
+      'entities.mentions.username',
+      'geo.place_id',
+      'in_reply_to_user_id',
+      'referenced_tweets.id',
+      'referenced_tweets.id.author_id'
+    ],
+    pollFields: [
+      'duration_minutes',
+      'end_datetime',
+      'id',
+      'options',
+      'voting_status'
+    ],
+    mediaFields: [
+      'duration_ms',
+      'height',
+      'media_key',
+      'preview_image_url',
+      'type',
+      'url',
+      'width',
+      'public_metrics'
+    ],
+    placeFields: [
+      'contained_within',
+      'country',
+      'country_code',
+      'full_name',
+      'geo',
+      'id',
+      'name',
+      'place_type'
+    ],
+    tweetFields: [
+      'attachments',
+      'author_id',
+      'context_annotations',
+      'conversation_id',
+      'created_at',
+      'entities',
+      'geo',
+      'id',
+      'in_reply_to_user_id',
+      'lang',
+      'public_metrics',
+      'possibly_sensitive',
+      'referenced_tweets',
+      'source',
+      'text',
+      'withheld'
+    ],
+    userFields: [
+      'created_at',
+      'description',
+      'entities',
+      'id',
+      'location',
+      'name',
+      'pinned_tweet_id',
+      'profile_image_url',
+      'protected',
+      'public_metrics',
+      'url',
+      'username',
+      'verified',
+      'withheld'
+    ]
+  }
+}
+
 const handleError = (error) => {
   const message = 'Failed fetching twitter data: ' + error
 
@@ -20,6 +96,19 @@ const handleError = (error) => {
     statusCode: 500,
     body: JSON.stringify({ error: message })
   }
+}
+
+const getRequestUrl = (id) => {
+  const params = [
+    `expansions=${config.params.expansions.join(',')}`,
+    `poll.fields=${config.params.pollFields.join(',')}`,
+    `media.fields=${config.params.mediaFields.join(',')}`,
+    `place.fields=${config.params.placeFields.join(',')}`,
+    `tweet.fields=${config.params.tweetFields.join(',')}`,
+    `user.fields=${config.params.userFields.join(',')}`
+  ].join('&')
+
+  return `${config.apiUrl}/${id}?${params}`
 }
 
 exports.handler = async (event, context) => {
@@ -35,32 +124,18 @@ exports.handler = async (event, context) => {
       return handleError('id parameter is required')
     }
 
-    // init twitter client
-    const client = new Twitter({
-      bearer_token: TWITTER_API_BAERER
-    })
-
-    // get tweets by id
-    // API Reference: https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets
-    const { data: tweet, errors } = await client.get('tweets', {
-      ids: tweetId,
-      tweet: {
-        fields: [
-          'author_id',
-          'created_at',
-          'id',
-          'text'
-        ]
+    const data = await fetch(getRequestUrl(tweetId), {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${TWITTER_API_BAERER}`
       }
     })
-
-    if (errors) {
-      return handleError('did not find any tweet...')
-    }
+    const result = await data.json()
 
     return {
       statusCode: 200,
-      body: JSON.stringify(tweet)
+      body: JSON.stringify(result)
     }
   } catch (error) {
     return handleError(error)
