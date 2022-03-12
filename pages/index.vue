@@ -10,6 +10,7 @@
         </v-card-text>
       </v-card>
       <GetTweet />
+      <StoreArweave />
     </v-col>
   </v-row>
 </template>
