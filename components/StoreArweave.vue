@@ -1,12 +1,23 @@
 <template>
-  <v-btn
-    elevation="2"
-    large
-    x-large
-    @click="store"
-  >
-    Store tweet
-  </v-btn>
+  <div>
+    <v-btn
+      elevation="2"
+      large
+      x-large
+      :disabled="!tweetContent || storing"
+      @click="store"
+    >
+      Store tweet
+    </v-btn>
+
+    <p v-if="error">
+      There was an error storing the information to the blockchain.
+    </p>
+
+    <p v-if="id">
+      The info was submitted to the blockchain with the transaction id: {{ id }}
+    </p>
+  </div>
 </template>
 
 <script>
@@ -14,20 +25,33 @@ import { storeOnArweave } from '../web3/arweave'
 
 export default {
   name: 'StoreArweave',
+  computed: {
+    error () {
+      return this.$store.state.arweave.error
+    },
+    id () {
+      return this.$store.state.arweave.id
+    },
+    storing () {
+      return this.$store.state.arweave.storing
+    },
+    tweetContent () {
+      return this.$store.state.twitter.tweetContent
+    }
+  },
   methods: {
     async store () {
-      const sampleData = {
-        foo: {
-          bar: 'baz'
-        }
-      }
-
       try {
-        const trxId = await storeOnArweave(sampleData)
-
-        console.log(trxId)
+        this.$store.commit('arweave/storing', true)
+        this.$store.commit('arweave/error', false)
+        this.$store.commit('arweave/id', false)
+        const trxId = await storeOnArweave(this.tweetContent)
+        this.$store.commit('arweave/storing', false)
+        this.$store.commit('arweave/id', trxId)
       } catch (e) {
         console.log(e)
+        this.$store.commit('arweave/storing', false)
+        this.$store.commit('arweave/error', true)
       }
     }
   }
