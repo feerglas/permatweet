@@ -9,6 +9,7 @@
           <p>Store tweets on the Arweave Blockchain on demand..</p>
         </v-card-text>
       </v-card>
+      <GetTweet />
     </v-col>
   </v-row>
 </template>
