@@ -46,7 +46,10 @@ exports.handler = async (event, context) => {
       ids: tweetId,
       tweet: {
         fields: [
-          'created_at'
+          'author_id',
+          'created_at',
+          'id',
+          'text'
         ]
       }
     })
@@ -57,7 +60,7 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ tweet })
+      body: JSON.stringify(tweet)
     }
   } catch (error) {
     return handleError(error)
