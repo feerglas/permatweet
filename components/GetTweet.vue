@@ -68,8 +68,6 @@ export default {
         }
 
         this.$store.commit('twitter/tweetContent', response)
-
-        console.log(response)
       } catch (error) {
         this.$store.commit('twitter/fetchError', true)
         console.log(error)
