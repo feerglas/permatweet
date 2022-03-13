@@ -25,10 +25,12 @@ function delay (ms) {
 
 export const storeOnArweave = (data, tweetId) => {
   try {
-    console.log('all good')
-    // const arweave = Arweave.init({
-    //   timeout: config.requests.timeout
-    // })
+    const arweave = Arweave.init({
+      timeout: config.requests.timeout
+    })
+
+    console.log('init arweave')
+    console.log(arweave)
 
     // // create transaction
     // const transaction = await arweave.createTransaction({
