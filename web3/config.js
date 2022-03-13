@@ -1,15 +1,15 @@
 export default {
   transaction: {
     tags: {
-      'permatweet-intent': 'saved-tweet',
-      'app-version': '0.0.1',
-      'app-name': 'permatweet',
+      'Permatweet-Intent': 'saved-tweet',
+      'App-Version': '0.0.1',
+      'App-Name': 'permatweet',
       'Content-Type': 'text/html',
-      authors: [
+      Authors: [
         'Yves Tscherry',
         'Michael Zumstein'
       ],
-      tweetId: ''
+      'Tweet-Id': ''
     },
     minAmountOfConfirmations: 3
   },
