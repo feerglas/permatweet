@@ -58,3 +58,4 @@ https://permatweet.netlify.app/
 - add component to start over again
 - set arweave timeout to 10 to enforce a timeout error. see if state is handled correctly
 - decrypt transaction tags to see if they are correct
+- after getting tweet, check price for transaction and inform user
