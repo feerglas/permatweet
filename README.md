@@ -54,3 +54,4 @@ https://permatweet.netlify.app/
 - before saving tweet, try to query the blockchain to see if it is already  there
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
 - does not work on netlify (store trasnaction)
+- delete local storage after enough confirmation
