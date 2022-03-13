@@ -34,31 +34,31 @@ export const storeOnArweave = async (data, tweetId) => {
       data: JSON.stringify(data)
     })
 
-    console.log('1 =====================')
-    console.log('transaction created')
-    console.log(transaction)
+    // console.log('1 =====================')
+    // console.log('transaction created')
+    // console.log(transaction)
 
-    // add tags
-    config.transaction.tags.tweetId = tweetId
-    Object.keys(config.transaction.tags).forEach((key) => {
-      const value = config.transaction.tags[key]
-      transaction.addTag(key, value)
-    })
+    // // add tags
+    // config.transaction.tags.tweetId = tweetId
+    // Object.keys(config.transaction.tags).forEach((key) => {
+    //   const value = config.transaction.tags[key]
+    //   transaction.addTag(key, value)
+    // })
 
-    console.log('2 =====================')
-    console.log('added tags')
-    console.log(transaction)
+    // console.log('2 =====================')
+    // console.log('added tags')
+    // console.log(transaction)
 
-    // sign transaction
-    await arweave.transactions.sign(transaction)
+    // // sign transaction
+    // await arweave.transactions.sign(transaction)
 
-    console.log('3 =====================')
-    console.log('signed transaction')
-    console.log(transaction)
+    // console.log('3 =====================')
+    // console.log('signed transaction')
+    // console.log(transaction)
 
-    // get transaction id
-    const trxId = transaction.id
-    console.log(trxId)
+    // // get transaction id
+    // const trxId = transaction.id
+
     // post transaction
     // const response = await arweave.transactions.post(transaction)
 
