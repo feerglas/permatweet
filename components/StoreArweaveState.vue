@@ -10,6 +10,24 @@
 
 <script>
 import { checkStatus } from '../web3/arweave'
+import {
+  getTranscationId,
+  removeTransactionId
+} from '../localStorage'
+
+const startChecking = async (id, store) => {
+  store.commit('arweave/confirming', true)
+
+  console.log('start checking')
+
+  await checkStatus(id, store)
+
+  store.commit('arweave/confirming', false)
+
+  console.log('finish checking')
+
+  removeTransactionId()
+}
 
 export default {
   name: 'StoreArweaveState',
@@ -31,30 +49,16 @@ export default {
       this.$store.commit('arweave/confirmed', false)
 
       if (!oldId && newId) {
-        this.$store.commit('arweave/confirming', true)
-
-        console.log('start checking')
-
-        await checkStatus(newId, this.$store)
-
-        this.$store.commit('arweave/confirming', false)
-
-        console.log('finish checking')
+        await startChecking(newId, this.$store)
       }
     }
   },
   async created () {
-    // console.log('start checking')
+    const transactionId = getTranscationId()
 
-    // this.$store.commit('arweave/confirming', true)
-    // this.$store.commit('arweave/setConfirmations', 0)
-    // this.$store.commit('arweave/confirmed', false)
-
-    // const status = await checkStatus('iONBCkEQ3EGl1e7Pm4gXcwpaxnOPDDckrYys_aZQDkk', this.$store)
-    // this.$store.commit('arweave/confirming', false)
-
-    // console.log('finish checking')
-    // console.log(status)
+    if (transactionId) {
+      await startChecking(getTranscationId(), this.$store)
+    }
   }
 }
 
