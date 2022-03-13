@@ -10,7 +10,7 @@
       elevation="2"
       large
       x-large
-      :disabled="!inputValid || fetching"
+      :disabled="!inputValid || fetching || confirming || arweaveStoring"
       @click="getTweet"
     >
       Get tweet
@@ -31,6 +31,9 @@ export default {
     }
   },
   computed: {
+    confirming () {
+      return this.$store.state.arweave.confirming
+    },
     fetchError () {
       return this.$store.state.twitter.fetchError
     },
@@ -39,6 +42,9 @@ export default {
     },
     tweetContent () {
       return this.$store.state.twitter.tweetContent
+    },
+    arweaveStoring () {
+      return this.$store.state.arweave.storing
     }
   },
   methods: {
@@ -46,6 +52,7 @@ export default {
       this.$store.commit('twitter/fetchError', false)
       this.$store.commit('twitter/fetching', true)
       this.$store.commit('twitter/tweetContent', false)
+      this.$store.commit('twitter/tweetId', this.input)
 
       const url = `./.netlify/functions/twitter?id=${this.input}`
 
@@ -61,6 +68,8 @@ export default {
         }
 
         this.$store.commit('twitter/tweetContent', response)
+
+        console.log(response)
       } catch (error) {
         this.$store.commit('twitter/fetchError', true)
         console.log(error)
