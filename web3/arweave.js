@@ -34,6 +34,8 @@ export const storeOnArweave = async (data, tweetId) => {
       data: JSON.stringify(data)
     })
 
+    console.log(transaction)
+
     // console.log('1 =====================')
     // console.log('transaction created')
     // console.log(transaction)
