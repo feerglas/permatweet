@@ -58,23 +58,23 @@ export const storeOnArweave = async (data, tweetId) => {
 
     // get transaction id
     const trxId = transaction.id
-
+    console.log(trxId)
     // post transaction
-    const response = await arweave.transactions.post(transaction)
+    // const response = await arweave.transactions.post(transaction)
 
-    console.log('4 =====================')
-    console.log('transaction posted, got response')
-    console.log(transaction)
+    // console.log('4 =====================')
+    // console.log('transaction posted, got response')
+    // console.log(transaction)
 
-    // check post response
-    if (response.status !== 200) {
-      console.log('-->> arweave: will abort with current transaction. error message will follow')
-      console.log(transaction)
+    // // check post response
+    // if (response.status !== 200) {
+    //   console.log('-->> arweave: will abort with current transaction. error message will follow')
+    //   console.log(transaction)
 
-      throw (new Error('wrong status code after posting the transaction, will abort'))
-    }
+    //   throw (new Error('wrong status code after posting the transaction, will abort'))
+    // }
 
-    return trxId
+    // return trxId
   } catch (e) {
     console.log('-->> arweave: error while handling storeOnArweave')
     console.log(e)
