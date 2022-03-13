@@ -55,3 +55,4 @@ https://permatweet.netlify.app/
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
 - does not work on netlify (store trasnaction)
 - delete local storage after enough confirmation
+- add component to start over again
