@@ -34,6 +34,10 @@ http://localhost:8888/.netlify/functions/twitter?id=1502265834328240145
 
 Keep in mind, that you need an `.env` file with the `TWITTER_API_BAERER` variable defined to get the function working locally.
 
+### Arweave
+
+To develop locally, you need to have the ArConnect browser extension installed with a fraction of arweave tokens in it to sign transactions. You can get the extension here: https://www.arconnect.io
+
 ## Deploy
 
 The App ist automatically build and deployed on netlify:
@@ -44,5 +48,8 @@ https://permatweet.netlify.app/
 ## Todo
 - Download Google Webfont and bundle together with app
 - add favicon
-- use https://github.com/wdl/tweet-json-to-html to generate tweet html from tweet json
-- use sanitize-html to prevent xss attacks from tweet html
+- add date field from tweet as transaction tag
+- add counter: how many tweets have been saved so far?
+- save  trx into localstorage. check on load if trx is in localstorage, if so, start check confirmation routine. when confirmed, delete localstorage
+- before saving tweet, try to query the blockchain to see if it is already  there
+- integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
