@@ -96,7 +96,7 @@ export const checkStatus = async (trxId, store) => {
         confirmations = _confirmations
       }
 
-      if (_confirmations > 7) {
+      if (_confirmations >= config.transaction.minAmountOfConfirmations) {
         console.log('-->> arweave: reached enough block confirmations, will finish with success')
         console.log(status)
 
