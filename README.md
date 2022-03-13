@@ -53,3 +53,4 @@ https://permatweet.netlify.app/
 - save  trx into localstorage. check on load if trx is in localstorage, if so, start check confirmation routine. when confirmed, delete localstorage
 - before saving tweet, try to query the blockchain to see if it is already  there
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
+- does not work on netlify (store trasnaction)
