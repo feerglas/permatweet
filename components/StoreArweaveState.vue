@@ -45,7 +45,9 @@ export default {
 
         console.log('finish checking')
 
-        removeTransactionId()
+        if (this.confirmed) {
+          removeTransactionId()
+        }
       }
     }
   },
