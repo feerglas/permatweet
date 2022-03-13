@@ -14,8 +14,14 @@ const config = {
     minAmountOfConfirmations: 3
   },
   requests: {
-    timeout: 60000,
     retryDelay: 4000
+  },
+  arweave: {
+    host: 'arweave.net',
+    port: 443,
+    protocol: 'https',
+    timeout: 60000,
+    logging: true
   }
 }
 
@@ -25,9 +31,7 @@ function delay (ms) {
 
 export const storeOnArweave = async (data, tweetId) => {
   try {
-    const arweave = Arweave.init({
-      timeout: config.requests.timeout
-    })
+    const arweave = Arweave.init(config.arweave)
 
     // create transaction
     const transaction = await arweave.createTransaction({
@@ -84,9 +88,7 @@ export const storeOnArweave = async (data, tweetId) => {
 }
 
 export const checkStatus = async (trxId, store) => {
-  const arweave = Arweave.init({
-    timeout: config.requests.timeout
-  })
+  const arweave = Arweave.init(config.arweave)
   let confirmations = 0
 
   try {
