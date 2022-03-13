@@ -1,29 +1,36 @@
 <template>
   <div>
-    saved tweets: 0
+    <p v-if="queryingTrxCount">
+      Fetching count...
+    </p>
+
+    <p v-if="!queryingTrxCount && trxCount">
+      {{ trxCount }} tweets in total have been saved with this tool.
+    </p>
   </div>
 </template>
 
 <script>
-import Arweave from 'arweave'
-import ArDB from 'ardb'
-
-const arweave = Arweave.init()
-const ardb = new ArDB(arweave)
+import { getAllTransactions } from '../web3/queries'
 
 export default {
   name: 'SavedTweetsCount',
+  computed: {
+    queryingTrxCount () {
+      return this.$store.state.graphql.queryingTrxCount
+    },
+    trxCount () {
+      return this.$store.state.graphql.trxCount
+    }
+  },
   async mounted () {
-    try {
-      const tx = await ardb.search('transaction').id('wdvU5aHM1bLjPuygO9UmS8GOeXHae6dPPStJqyZ0DIA').findOne()
+    this.$store.commit('graphql/queryingTrxCount', true)
+    const allTransactions = await getAllTransactions()
 
-      const appName = await ardb.search('transactions').appName('SmartWeaveAction').findOne()
+    this.$store.commit('graphql/queryingTrxCount', false)
 
-      console.log(tx)
-      console.log(appName)
-    } catch (err) {
-      console.error('GraphQL query failed')
-      throw new Error(err)
+    if (allTransactions) {
+      this.$store.commit('graphql/trxCount', allTransactions.length)
     }
   }
 }
