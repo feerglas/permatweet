@@ -56,3 +56,5 @@ https://permatweet.netlify.app/
 - does not work on netlify (store trasnaction)
 - delete local storage after enough confirmation
 - add component to start over again
+- set arweave timeout to 10 to enforce a timeout error. see if state is handled correctly
+- decrypt transaction tags to see if they are correct
