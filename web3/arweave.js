@@ -3,8 +3,9 @@ import Arweave from 'arweave'
 const config = {
   transaction: {
     tags: {
-      'permaweb-intend': 'saved-tweet',
+      'permatweet-intent': 'saved-tweet',
       'app-version': '0.0.1',
+      'app-name': 'permatweet',
       'Content-Type': 'text/html',
       authors: [
         'Yves Tscherry',
