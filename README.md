@@ -54,3 +54,8 @@ https://permatweet.netlify.app/
 - add component to start over again
 - set arweave timeout to 10 to enforce a timeout error. see if state is handled correctly
 - after getting tweet, check price for transaction and inform user
+
+## Work log
+Friday, 11.03.2022, 5h
+Saturday, 12.03.2022, 8h
+Sunday, 13.03.2022, 8h
