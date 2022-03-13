@@ -34,6 +34,10 @@ export const storeOnArweave = async (data, tweetId) => {
       data: JSON.stringify(data)
     })
 
+    console.log('1 =====================')
+    console.log('transaction created')
+    console.log(transaction)
+
     // add tags
     config.transaction.tags.tweetId = tweetId
     Object.keys(config.transaction.tags).forEach((key) => {
@@ -41,14 +45,26 @@ export const storeOnArweave = async (data, tweetId) => {
       transaction.addTag(key, value)
     })
 
+    console.log('2 =====================')
+    console.log('added tags')
+    console.log(transaction)
+
     // sign transaction
     await arweave.transactions.sign(transaction)
+
+    console.log('3 =====================')
+    console.log('signed transaction')
+    console.log(transaction)
 
     // get transaction id
     const trxId = transaction.id
 
     // post transaction
     const response = await arweave.transactions.post(transaction)
+
+    console.log('4 =====================')
+    console.log('transaction posted, got response')
+    console.log(transaction)
 
     // check post response
     if (response.status !== 200) {
