@@ -64,14 +64,19 @@ export default {
 
       try {
         const transactions = await getAllTransactions()
-
+        let alreadyThere = false
         transactions.forEach((trx) => {
           trx._tags.forEach((tag) => {
             if (tag.name === 'Tweet-Id' && tag.value === this.input) {
+              alreadyThere = true
               this.$store.commit('twitter/tweetAlreadySaved', trx._id)
             }
           })
         })
+
+        if (alreadyThere) {
+          return
+        }
 
         this.$store.commit('twitter/tweetId', this.input)
 
