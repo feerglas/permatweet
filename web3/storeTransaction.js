@@ -11,7 +11,7 @@ export default async (data, tweetId) => {
     })
 
     // add tags
-    config.transaction.tags.tweetId = tweetId
+    config.transaction.tags['Tweet-Id'] = tweetId
     Object.keys(config.transaction.tags).forEach((key) => {
       const value = config.transaction.tags[key]
       transaction.addTag(key, value)
