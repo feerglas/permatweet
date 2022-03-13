@@ -1,7 +1,8 @@
 export const state = () => ({
   fetchError: false,
   fetching: false,
-  tweetContent: false
+  tweetContent: false,
+  tweetId: false
 })
 
 export const mutations = {
@@ -13,5 +14,8 @@ export const mutations = {
   },
   tweetContent (state, content) {
     state.tweetContent = content
+  },
+  tweetId (state, id) {
+    state.tweetContent = id
   }
 }
