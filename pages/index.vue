@@ -10,6 +10,7 @@
         </v-card-text>
       </v-card>
       <GetTweet />
+      <TweetView v-if="tweetContent" />
       <StoreArweave />
       <StoreArweaveState />
       <SavedTweetsCount />
@@ -21,6 +22,11 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  computed: {
+    tweetContent () {
+      return this.$store.state.twitter.tweetContent
+    }
+  }
 }
 </script>
