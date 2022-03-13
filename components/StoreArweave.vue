@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn
+    <!-- <v-btn
       elevation="2"
       large
       x-large
@@ -8,7 +8,10 @@
       @click="store"
     >
       Store tweet
-    </v-btn>
+    </v-btn> -->
+    <p @click="store">
+      store
+    </p>
 
     <p v-if="error">
       There was an error storing the information to the blockchain.
