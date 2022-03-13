@@ -5,6 +5,7 @@ const config = {
     tags: {
       'permaweb-intend': 'saved-tweet',
       'app-version': '0.0.1',
+      'Content-Type': 'text/html',
       authors: [
         'Yves Tscherry',
         'Michael Zumstein'
