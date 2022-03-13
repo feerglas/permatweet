@@ -12,6 +12,7 @@
       <GetTweet />
       <StoreArweave />
       <StoreArweaveState />
+      <SavedTweetsCount />
 
       <p>Keep in mind: you need the ArConnect Browser Extension installed for this App to work. You can get it here: <a href="https://www.arconnect.io/" rel="noopener noreferrer" target="_blank">https://www.arconnect.io/</a></p>
     </v-col>
