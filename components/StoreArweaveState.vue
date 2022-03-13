@@ -15,20 +15,6 @@ import {
   removeTransactionId
 } from '../localStorage'
 
-const startChecking = async (id, store) => {
-  store.commit('arweave/confirming', true)
-
-  console.log('start checking')
-
-  await checkStatus(id, store)
-
-  store.commit('arweave/confirming', false)
-
-  console.log('finish checking')
-
-  removeTransactionId()
-}
-
 export default {
   name: 'StoreArweaveState',
   computed: {
@@ -49,15 +35,25 @@ export default {
       this.$store.commit('arweave/confirmed', false)
 
       if (!oldId && newId) {
-        await startChecking(newId, this.$store)
+        this.$store.commit('arweave/confirming', true)
+
+        console.log('start checking')
+
+        await checkStatus(newId, this.$store)
+
+        this.$store.commit('arweave/confirming', false)
+
+        console.log('finish checking')
+
+        removeTransactionId()
       }
     }
   },
-  async created () {
+  created () {
     const transactionId = getTranscationId()
 
     if (transactionId) {
-      await startChecking(getTranscationId(), this.$store)
+      this.$store.commit('arweave/id', transactionId)
     }
   }
 }

@@ -22,10 +22,7 @@
 
 <script>
 import { storeOnArweave } from '../web3/arweave'
-import {
-  setTranscationId,
-  getTranscationId
-} from '../localStorage'
+import { setTranscationId } from '../localStorage'
 
 export default {
   name: 'StoreArweave',
@@ -37,7 +34,7 @@ export default {
       return this.$store.state.arweave.error
     },
     id () {
-      return this.$store.state.arweave.id || getTranscationId()
+      return this.$store.state.arweave.id
     },
     storing () {
       return this.$store.state.arweave.storing
