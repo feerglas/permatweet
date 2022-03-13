@@ -2,7 +2,7 @@ import Arweave from 'arweave'
 import ArDB from 'ardb'
 import config from './config'
 
-const arweave = Arweave.init()
+const arweave = Arweave.init(config.arweave)
 const ardb = new ArDB(arweave)
 
 export const getAllTransactions = async () => {
