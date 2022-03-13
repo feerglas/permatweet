@@ -23,14 +23,14 @@ function delay (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-export const storeOnArweave = (data, tweetId) => {
+export const storeOnArweave = async (data, tweetId) => {
   try {
     const arweave = Arweave.init({
       timeout: config.requests.timeout
     })
 
     // create transaction
-    const transaction = arweave.createTransaction({
+    const transaction = await arweave.createTransaction({
       data: JSON.stringify(data)
     })
 
