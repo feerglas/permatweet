@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { checkStatus } from '../web3/arweave'
+import checkStatus from '../web3/transactionStatus'
 import {
   getTranscationId,
   removeTransactionId

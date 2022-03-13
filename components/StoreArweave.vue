@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { storeOnArweave } from '../web3/arweave'
+import storeOnArweave from '../web3/storeTransaction'
 import { setTranscationId } from '../localStorage'
 
 export default {
