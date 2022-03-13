@@ -9,11 +9,26 @@
           <p>Store tweets on the Arweave Blockchain on demand..</p>
         </v-card-text>
       </v-card>
+
       <GetTweet />
+
+      <hr>
+
       <TweetView />
+
+      <hr>
+
       <StoreArweave />
+
+      <hr>
+
       <StoreArweaveState />
+
+      <hr>
+
       <SavedTweetsCount />
+
+      <hr>
 
       <p>Keep in mind: you need the ArConnect Browser Extension installed for this App to work. You can get it here: <a href="https://www.arconnect.io/" rel="noopener noreferrer" target="_blank">https://www.arconnect.io/</a></p>
     </v-col>
