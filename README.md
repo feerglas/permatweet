@@ -49,7 +49,6 @@ https://permatweet.netlify.app/
 - Download Google Webfont and bundle together with app
 - add favicon
 - add date field from tweet as transaction tag
-- before saving tweet, try to query the blockchain to see if it is already  there
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
 - add component to start over again
 - set arweave timeout to 10 to enforce a timeout error. see if state is handled correctly
