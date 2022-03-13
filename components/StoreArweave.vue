@@ -4,7 +4,7 @@
       elevation="2"
       large
       x-large
-      :disabled="!tweetContent || storing || confirming"
+      :disabled="!tweetContent || storing || confirming || tweetFetching"
       @click="store"
     >
       Store tweet
@@ -43,6 +43,9 @@ export default {
     },
     tweetId () {
       return this.$store.state.twitter.tweetId
+    },
+    tweetFetching () {
+      return this.$store.state.twitter.fetching
     }
   },
   methods: {
