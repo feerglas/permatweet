@@ -16,6 +16,6 @@ export const mutations = {
     state.tweetContent = content
   },
   tweetId (state, id) {
-    state.tweetContent = id
+    state.tweetId = id
   }
 }
