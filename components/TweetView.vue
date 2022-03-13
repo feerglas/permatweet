@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div v-if="tweetContent">
     <p>
       here we will place a preview of the tweet. same markup will be used to store the tweet into arweave.
     </p>
 
-    <p v-if="tweetContent">
+    <p>
       tweet content received. The received json is now available under the variable "tweetContent"
     </p>
   </div>
