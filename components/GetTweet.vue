@@ -18,10 +18,15 @@
     <p v-if="fetchError">
       There was an error fetching the information from twitter. Please be sure to provide a valid Tweet-Id.
     </p>
+    <p v-if="tweetAlreadySaved">
+      This tweet has already been saved. Transaction id is: {{ tweetAlreadySaved }}
+    </p>
   </div>
 </template>
 
 <script>
+import { getAllTransactions } from '../web3/queries'
+
 export default {
   name: 'GetTweet',
   data () {
@@ -31,9 +36,6 @@ export default {
     }
   },
   computed: {
-    confirming () {
-      return this.$store.state.arweave.confirming
-    },
     fetchError () {
       return this.$store.state.twitter.fetchError
     },
@@ -43,8 +45,14 @@ export default {
     tweetContent () {
       return this.$store.state.twitter.tweetContent
     },
+    tweetAlreadySaved () {
+      return this.$store.state.twitter.tweetAlreadySaved
+    },
     arweaveStoring () {
       return this.$store.state.arweave.storing
+    },
+    confirming () {
+      return this.$store.state.arweave.confirming
     }
   },
   methods: {
@@ -52,11 +60,22 @@ export default {
       this.$store.commit('twitter/fetchError', false)
       this.$store.commit('twitter/fetching', true)
       this.$store.commit('twitter/tweetContent', false)
-      this.$store.commit('twitter/tweetId', this.input)
-
-      const url = `./.netlify/functions/twitter?id=${this.input}`
+      this.$store.commit('twitter/tweetAlreadySaved', false)
 
       try {
+        const transactions = await getAllTransactions()
+
+        transactions.forEach((trx) => {
+          trx._tags.forEach((tag) => {
+            if (tag.name === 'Tweet-Id' && tag.value === this.input) {
+              this.$store.commit('twitter/tweetAlreadySaved', trx._id)
+            }
+          })
+        })
+
+        this.$store.commit('twitter/tweetId', this.input)
+
+        const url = `./.netlify/functions/twitter?id=${this.input}`
         const data = await fetch(url)
         const response = await data.json()
 
@@ -69,7 +88,9 @@ export default {
 
         this.$store.commit('twitter/tweetContent', response)
       } catch (error) {
+        this.$store.commit('twitter/fetching', false)
         this.$store.commit('twitter/fetchError', true)
+        this.$store.commit('twitter/tweetAlreadySaved', false)
         console.log(error)
       }
     },
