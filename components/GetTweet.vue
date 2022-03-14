@@ -3,14 +3,14 @@
     <v-text-field
       v-model="input"
       label="Tweet ID"
-      placeholder="asdf"
+      :disabled="(fetching || confirming || arweaveStoring) && !tweetAlreadySaved"
       @input.native="handleInputChange"
     />
     <v-btn
       elevation="2"
       large
       x-large
-      :disabled="!inputValid || fetching || confirming || arweaveStoring"
+      :disabled="(!inputValid || fetching || confirming || arweaveStoring) && !tweetAlreadySaved"
       @click="getTweet"
     >
       Get tweet
