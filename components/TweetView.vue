@@ -1,5 +1,5 @@
 <template>
-  <div v-if="tweetContentComponent" v-html="tweetContentComponent" />
+  <div v-html="tweetContentComponent" />
 </template>
 
 <script>

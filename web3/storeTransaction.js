@@ -39,6 +39,6 @@ export default async (data, tweetId) => {
     console.log('-->> arweave: error while handling storeOnArweave')
     console.log(e)
 
-    return false
+    throw (new Error(e))
   }
 }

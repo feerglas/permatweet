@@ -1,46 +1,51 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <v-card>
-        <v-card-title class="headline">
-          Permatweet
-        </v-card-title>
-        <v-card-text>
-          <p>Store tweets on the Arweave Blockchain on demand..</p>
-        </v-card-text>
-      </v-card>
+      <PageHeader />
 
-      <GetTweet />
+      <v-divider class="my-12" />
 
-      <hr>
+      <!-- Screen 1: get tweet -->
+      <GetTweet v-if="!tweetData && !trxId" />
 
-      <TweetView />
+      <!-- Screen 2a: tweet has already been saved -->
+      <AlreadyStored v-if="tweetData && tweetAlreadySaved && !trxId" />
 
-      <hr>
+      <!-- Screen 2b: tweet has not been saved before -->
+      <div v-if="tweetData && !tweetAlreadySaved && !trxId">
+        <ArweaveStore />
+      </div>
 
-      <StoreArweave />
+      <!-- Screen 3: show confirmation -->
+      <ArweaveConfirmation />
 
-      <hr>
+      <SavedTweetsCount class="my-12" />
 
-      <StoreArweaveState />
+      <StartNew
+        v-if="tweetData"
+        class="my-12"
+      />
 
-      <hr>
-
-      <SavedTweetsCount />
-
-      <hr>
-
-      <StartNew />
-
-      <hr>
-
-      <p>Keep in mind: you need the ArConnect Browser Extension installed for this App to work. You can get it here: <a href="https://www.arconnect.io/" rel="noopener noreferrer" target="_blank">https://www.arconnect.io/</a></p>
+      <p class="my-12">
+        Keep in mind: you need the ArConnect Browser Extension installed for this App to work. You can get it here: <a href="https://www.arconnect.io/" rel="noopener noreferrer" target="_blank">https://www.arconnect.io/</a>
+      </p>
     </v-col>
   </v-row>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  computed: {
+    tweetData () {
+      return this.$store.state.twitter.tweetData
+    },
+    tweetAlreadySaved () {
+      return this.$store.state.twitter.tweetAlreadySaved
+    },
+    trxId () {
+      return this.$store.state.arweave.id
+    }
+  }
 }
 </script>

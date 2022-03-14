@@ -10,7 +10,6 @@
           color="red lighten-2"
           large
           x-large
-          :disabled="!(confirming || confirmed)"
           v-bind="attrs"
           v-on="on"
         >
@@ -25,10 +24,7 @@
 
         <v-card-text>
           <p>
-            Before restarting, copy the followingtransaction id and keep it somewhere so you can access your saved tweet later:
-          </p>
-          <p>
-            {{ trxId }}
+            Are you sure you want to reset? Make sure you copied the link to the tweet in the blockchain.
           </p>
         </v-card-text>
 
@@ -58,7 +54,7 @@
 
 <script>
 
-import localStorage from '../localStorage'
+import { resetAll } from '../helpers/store'
 
 export default {
   name: 'StartNew',
@@ -67,46 +63,10 @@ export default {
       dialog: false
     }
   },
-  computed: {
-    confirming () {
-      return this.$store.state.arweave.confirming
-    },
-    confirmed () {
-      return this.$store.state.arweave.confirmed
-    },
-    trxId () {
-      return this.$store.state.arweave.id
-    },
-    stateRestart () {
-      return this.$store.state.restart.restarting
-    }
-  },
   methods: {
     restart () {
       this.dialog = false
-
-      this.$store.commit('twitter/fetchError', false)
-      this.$store.commit('twitter/fetching', false)
-      this.$store.commit('twitter/tweetContentDocument', false)
-      this.$store.commit('twitter/tweetContentComponent', false)
-      this.$store.commit('twitter/tweetData', false)
-      this.$store.commit('twitter/tweetId', false)
-      this.$store.commit('twitter/tweetAlreadySaved', false)
-
-      this.$store.commit('graphql/trxCount', 0)
-      this.$store.commit('graphql/queryingTrxCount', false)
-
-      this.$store.commit('arweave/setConfirmations', 0)
-      this.$store.commit('arweave/storing', false)
-      this.$store.commit('arweave/confirming', false)
-      this.$store.commit('arweave/confirmed', false)
-      this.$store.commit('arweave/id', false)
-      this.$store.commit('arweave/error', true)
-
-      this.$store.commit('restart/restarting', true)
-
-      localStorage.transactionId.remove()
-      localStorage.tweetId.remove()
+      resetAll(this.$store)
     }
   }
 }

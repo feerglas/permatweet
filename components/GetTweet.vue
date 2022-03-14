@@ -1,48 +1,50 @@
 <template>
   <div>
-    <v-text-field
-      v-model="input"
-      label="Tweet ID"
-      :disabled="(fetching || confirming || arweaveStoring)"
-      @input.native="handleInputChange"
-    />
-    <v-btn
+    <v-card
       elevation="2"
-      large
-      x-large
-      :disabled="(!inputValid || fetching || confirming || arweaveStoring)"
-      @click="getTweet"
     >
-      Get tweet
-    </v-btn>
-    <p v-if="fetchError">
-      There was an error fetching the information from twitter. Please be sure to provide a valid Tweet-Id.
-    </p>
-    <p v-if="tweetAlreadySaved">
-      This tweet has already been saved. Transaction id is: {{ tweetAlreadySaved }}
-    </p>
+      <v-card-title>Get Tweet</v-card-title>
+
+      <v-card-text>
+        <v-text-field
+          v-model="input"
+          label="Tweet ID"
+          :disabled="fetching"
+          @input.native="handleInputChange"
+        />
+        <v-btn
+          elevation="2"
+          x-large
+          outlined
+          :disabled="(!inputValid || fetching)"
+          :loading="fetching"
+          @click="getTweet"
+        >
+          Get tweet
+        </v-btn>
+        <p v-if="fetchError">
+          There was an error fetching the information from twitter. Please be sure to provide a valid Tweet-Id.
+        </p>
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
 <script>
 import { getAllTransactions } from '../web3/queries'
 import renderTweet from '../helpers/renderTweet'
-import localStorage from '../localStorage'
+import { resetTwitter } from '../helpers/store'
 
 const _getTweet = async (store, input) => {
-  store.commit('twitter/fetchError', false)
-  store.commit('twitter/fetching', true)
-  store.commit('twitter/tweetContentDocument', false)
-  store.commit('twitter/tweetAlreadySaved', false)
+  resetTwitter(store)
 
   try {
+    store.commit('twitter/fetching', true)
     const transactions = await getAllTransactions()
 
-    let alreadyThere = false
     transactions.forEach((trx) => {
       trx._tags.forEach((tag) => {
         if (tag.name === 'Tweet-Id' && tag.value === input) {
-          alreadyThere = true
           store.commit('twitter/tweetAlreadySaved', trx._id)
         }
       })
@@ -63,15 +65,9 @@ const _getTweet = async (store, input) => {
     const response = await data.json()
 
     const renderedTweetComponent = renderTweet(response, false)
-    store.commit('twitter/tweetContentComponent', renderedTweetComponent)
-    localStorage.tweetId.set(input)
-
-    if (alreadyThere) {
-      return
-    }
-
     const renderedTweetDocument = renderTweet(response, true)
 
+    store.commit('twitter/tweetContentComponent', renderedTweetComponent)
     store.commit('twitter/tweetContentDocument', renderedTweetDocument)
     store.commit('twitter/tweetData', response)
   } catch (error) {
@@ -96,28 +92,6 @@ export default {
     },
     fetching () {
       return this.$store.state.twitter.fetching
-    },
-    tweetContentDocument () {
-      return this.$store.state.twitter.tweetContentDocument
-    },
-    tweetAlreadySaved () {
-      return this.$store.state.twitter.tweetAlreadySaved
-    },
-    arweaveStoring () {
-      return this.$store.state.arweave.storing
-    },
-    confirming () {
-      return this.$store.state.arweave.confirming
-    }
-  },
-  async created () {
-    const tweetId = localStorage.tweetId.get()
-
-    if (tweetId) {
-      this.input = tweetId
-      await _getTweet(this.$store, tweetId)
-
-      this.$store.commit('twitter/fetching', false)
     }
   },
   methods: {

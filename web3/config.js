@@ -23,5 +23,6 @@ export default {
     timeout: 60000,
     logging: false
   },
-  arweaveNet: 'https://arweave.net'
+  arweaveNet: 'https://arweave.net',
+  blockExplorer: 'https://viewblock.io/arweave/tx'
 }

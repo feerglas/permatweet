@@ -1,20 +1,40 @@
 <template>
-  <div>
-    confirmations: {{ confirmations }}
+  <div v-if="trxId && tweetData">
+    <v-card
+      elevation="2"
+    >
+      <v-card-title>Confirmation</v-card-title>
 
-    <p v-if="confirmed">
-      YES, storing your tweet to arweave has been cofirmed!
-    </p>
+      <v-card-text>
+        <p>
+          <b>Remember to save the link to the tweet somewhere!</b> The network is busy on storing the tweet. You can stay here and wait for confirmations of the network, or check out the links to see if the tweet has already been saved:
+        </p>
+
+        <SavedTweetInfo class="mb-6" />
+
+        <p v-if="!confirmed">
+          confirmations: {{ confirmations }}
+        </p>
+
+        <p v-if="confirmed">
+          YES, storing your tweet to arweave has been cofirmed!
+        </p>
+
+        <TweetView />
+      </v-card-text>
+    </v-card>
   </div>
 </template>
 
 <script>
 import checkStatus from '../web3/transactionStatus'
-import localStorage from '../localStorage'
 
 export default {
-  name: 'StoreArweaveState',
+  name: 'ArweaveConfirmation',
   computed: {
+    tweetData () {
+      return this.$store.state.twitter.tweetData
+    },
     confirmations () {
       return this.$store.state.arweave.confirmations
     },
@@ -42,22 +62,12 @@ export default {
           this.$store.commit('arweave/confirming', false)
 
           console.log('finish checking')
-
-          if (this.confirmed) {
-            localStorage.transactionId.remove()
-            localStorage.tweetId.remove()
-          }
         } catch (err) {
           console.log(err)
+
+          this.$store.commit('arweave/confirming', false)
         }
       }
-    }
-  },
-  created () {
-    const transactionId = localStorage.transactionId.get()
-
-    if (transactionId) {
-      this.$store.commit('arweave/id', transactionId)
     }
   }
 }
