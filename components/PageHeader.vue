@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Permatweet</h1>
-    <p>Store tweets on the Arweave Blockchain on demand..</p>
+    <p>Store tweets on the Arweave Blockchain on demand - forever...</p>
   </div>
 </template>
 
