@@ -7,7 +7,7 @@ export default async (data, tweetId) => {
 
     // create transaction
     const transaction = await arweave.createTransaction({
-      data: JSON.stringify(data)
+      data
     })
 
     // add tags
