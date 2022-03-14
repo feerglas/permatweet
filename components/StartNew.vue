@@ -13,13 +13,13 @@
           v-bind="attrs"
           v-on="on"
         >
-          Reset
+          Restart
         </v-btn>
       </template>
 
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          Reset
+          Restart
         </v-card-title>
 
         <v-card-text>
@@ -37,7 +37,7 @@
             text
             @click="restart"
           >
-            Reset
+            Restart
           </v-btn>
           <v-btn
             color="secondary"
