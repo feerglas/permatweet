@@ -4,8 +4,9 @@ export default (data, isForDocument) => {
 <html>
   <head>
     <meta charset="utf-8">
-    <script id="permatweetRawData">
-      (function () { window.permatweet.rawData = ${JSON.stringify(data)} })()
+    <script type="text/javascript">
+      window.permatweet = {};
+      window.permatweet.rawData = ${JSON.stringify(data)};
     </script>
   </head>
 
