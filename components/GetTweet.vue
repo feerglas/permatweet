@@ -3,14 +3,14 @@
     <v-text-field
       v-model="input"
       label="Tweet ID"
-      :disabled="(fetching || confirming || arweaveStoring) && !tweetAlreadySaved"
+      :disabled="(fetching || confirming || arweaveStoring)"
       @input.native="handleInputChange"
     />
     <v-btn
       elevation="2"
       large
       x-large
-      :disabled="(!inputValid || fetching || confirming || arweaveStoring) && !tweetAlreadySaved"
+      :disabled="(!inputValid || fetching || confirming || arweaveStoring)"
       @click="getTweet"
     >
       Get tweet
@@ -86,7 +86,7 @@ export default {
   name: 'GetTweet',
   data () {
     return {
-      input: '1502533647336972290',
+      input: '',
       inputValid: false
     }
   },
@@ -114,7 +114,10 @@ export default {
     const tweetId = localStorage.tweetId.get()
 
     if (tweetId) {
+      this.input = tweetId
       await _getTweet(this.$store, tweetId)
+
+      this.$store.commit('twitter/fetching', false)
     }
   },
   methods: {
