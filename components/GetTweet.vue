@@ -27,6 +27,60 @@
 <script>
 import { getAllTransactions } from '../web3/queries'
 import renderTweet from '../helpers/renderTweet'
+import localStorage from '../localStorage'
+
+const _getTweet = async (store, input) => {
+  store.commit('twitter/fetchError', false)
+  store.commit('twitter/fetching', true)
+  store.commit('twitter/tweetContentDocument', false)
+  store.commit('twitter/tweetAlreadySaved', false)
+
+  try {
+    const transactions = await getAllTransactions()
+
+    let alreadyThere = false
+    transactions.forEach((trx) => {
+      trx._tags.forEach((tag) => {
+        if (tag.name === 'Tweet-Id' && tag.value === input) {
+          alreadyThere = true
+          store.commit('twitter/tweetAlreadySaved', trx._id)
+        }
+      })
+    })
+
+    store.commit('twitter/tweetId', input)
+
+    const url = `./.netlify/functions/twitter?id=${input}`
+    const data = await fetch(url)
+
+    store.commit('twitter/fetching', false)
+
+    if (data.status !== 200) {
+      store.commit('twitter/fetchError', true)
+      throw (new Error('there was an error'))
+    }
+
+    const response = await data.json()
+
+    const renderedTweetComponent = renderTweet(response, false)
+    store.commit('twitter/tweetContentComponent', renderedTweetComponent)
+    localStorage.tweetId.set(input)
+
+    if (alreadyThere) {
+      return
+    }
+
+    const renderedTweetDocument = renderTweet(response, true)
+
+    store.commit('twitter/tweetContentDocument', renderedTweetDocument)
+    store.commit('twitter/tweetData', response)
+  } catch (error) {
+    store.commit('twitter/fetching', false)
+    store.commit('twitter/fetchError', true)
+    store.commit('twitter/tweetAlreadySaved', false)
+    console.log(error)
+  }
+}
 
 export default {
   name: 'GetTweet',
@@ -56,57 +110,16 @@ export default {
       return this.$store.state.arweave.confirming
     }
   },
+  async created () {
+    const tweetId = localStorage.tweetId.get()
+
+    if (tweetId) {
+      await _getTweet(this.$store, tweetId)
+    }
+  },
   methods: {
     async getTweet () {
-      this.$store.commit('twitter/fetchError', false)
-      this.$store.commit('twitter/fetching', true)
-      this.$store.commit('twitter/tweetContentDocument', false)
-      this.$store.commit('twitter/tweetAlreadySaved', false)
-
-      try {
-        const transactions = await getAllTransactions()
-
-        let alreadyThere = false
-        transactions.forEach((trx) => {
-          trx._tags.forEach((tag) => {
-            if (tag.name === 'Tweet-Id' && tag.value === this.input) {
-              alreadyThere = true
-              this.$store.commit('twitter/tweetAlreadySaved', trx._id)
-            }
-          })
-        })
-
-        this.$store.commit('twitter/tweetId', this.input)
-
-        const url = `./.netlify/functions/twitter?id=${this.input}`
-        const data = await fetch(url)
-
-        this.$store.commit('twitter/fetching', false)
-
-        if (data.status !== 200) {
-          this.$store.commit('twitter/fetchError', true)
-          throw (new Error('there was an error'))
-        }
-
-        const response = await data.json()
-
-        const renderedTweetComponent = renderTweet(response, false)
-        this.$store.commit('twitter/tweetContentComponent', renderedTweetComponent)
-
-        if (alreadyThere) {
-          return
-        }
-
-        const renderedTweetDocument = renderTweet(response, true)
-
-        this.$store.commit('twitter/tweetContentDocument', renderedTweetDocument)
-        this.$store.commit('twitter/tweetData', response)
-      } catch (error) {
-        this.$store.commit('twitter/fetching', false)
-        this.$store.commit('twitter/fetchError', true)
-        this.$store.commit('twitter/tweetAlreadySaved', false)
-        console.log(error)
-      }
+      await _getTweet(this.$store, this.input)
     },
     handleInputChange () {
       this.inputValid = this.input.length > 0
