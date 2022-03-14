@@ -52,7 +52,6 @@ https://permatweet.netlify.app/
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
 - after getting tweet, check price for transaction and inform user
 - if there is an error in "getAllTransaction" when checking after getting tweet, we need to inform user and disable store button
-- when pressing "Get tweet", we make a gql query to see if tweet is already there. post status message during that event.
 - implement PSC
 - make data that is saved anonymous
 
