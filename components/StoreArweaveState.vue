@@ -39,14 +39,18 @@ export default {
 
         console.log('start checking')
 
-        await checkStatus(newId, this.$store)
+        try {
+          await checkStatus(newId, this.$store)
 
-        this.$store.commit('arweave/confirming', false)
+          this.$store.commit('arweave/confirming', false)
 
-        console.log('finish checking')
+          console.log('finish checking')
 
-        if (this.confirmed) {
-          removeTransactionId()
+          if (this.confirmed) {
+            removeTransactionId()
+          }
+        } catch (err) {
+          console.log(err)
         }
       }
     }
