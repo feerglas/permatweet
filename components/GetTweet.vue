@@ -26,6 +26,7 @@
 
 <script>
 import { getAllTransactions } from '../web3/queries'
+import renderTweet from '../helpers/renderTweet'
 
 export default {
   name: 'GetTweet',
@@ -91,7 +92,9 @@ export default {
           throw (new Error('there was an error'))
         }
 
-        this.$store.commit('twitter/tweetContent', response)
+        const renderedTweet = renderTweet(response, true)
+
+        this.$store.commit('twitter/tweetContent', renderedTweet)
       } catch (error) {
         this.$store.commit('twitter/fetching', false)
         this.$store.commit('twitter/fetchError', true)
