@@ -65,6 +65,7 @@ export default {
 
       try {
         const transactions = await getAllTransactions()
+
         let alreadyThere = false
         transactions.forEach((trx) => {
           trx._tags.forEach((tag) => {
@@ -75,15 +76,10 @@ export default {
           })
         })
 
-        if (alreadyThere) {
-          return
-        }
-
         this.$store.commit('twitter/tweetId', this.input)
 
         const url = `./.netlify/functions/twitter?id=${this.input}`
         const data = await fetch(url)
-        const response = await data.json()
 
         this.$store.commit('twitter/fetching', false)
 
@@ -92,9 +88,19 @@ export default {
           throw (new Error('there was an error'))
         }
 
-        const renderedTweet = renderTweet(response, true)
+        const response = await data.json()
 
-        this.$store.commit('twitter/tweetContentDocument', renderedTweet)
+        const renderedTweetComponent = renderTweet(response, false)
+        this.$store.commit('twitter/tweetContentComponent', renderedTweetComponent)
+
+        if (alreadyThere) {
+          return
+        }
+
+        const renderedTweetDocument = renderTweet(response, true)
+
+        this.$store.commit('twitter/tweetContentDocument', renderedTweetDocument)
+        this.$store.commit('twitter/tweetData', response)
       } catch (error) {
         this.$store.commit('twitter/fetching', false)
         this.$store.commit('twitter/fetchError', true)
