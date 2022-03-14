@@ -12,6 +12,12 @@ export default async (trxId, store) => {
 
     // recursively call until enough block confirmation reached
     const _checkStatus = async () => {
+      if (store.state.restart.restarting) {
+        store.commit('restart/restarting', false)
+
+        return false
+      }
+
       const status = await getStatus(trxId)
 
       if (status.status !== 200 || status.confirmed === null) {
