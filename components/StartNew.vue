@@ -10,17 +10,17 @@
           color="red lighten-2"
           large
           x-large
-          :disabled="!(storing || confirming || confirmed)"
+          :disabled="!(confirming || confirmed)"
           v-bind="attrs"
           v-on="on"
         >
-          Restart
+          Reset
         </v-btn>
       </template>
 
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          Restart
+          Reset
         </v-card-title>
 
         <v-card-text>
@@ -41,7 +41,7 @@
             text
             @click="restart"
           >
-            Restart
+            Reset
           </v-btn>
           <v-btn
             color="secondary"
@@ -68,9 +68,6 @@ export default {
     }
   },
   computed: {
-    storing () {
-      return this.$store.state.arweave.storing
-    },
     confirming () {
       return this.$store.state.arweave.confirming
     },
@@ -79,6 +76,9 @@ export default {
     },
     trxId () {
       return this.$store.state.arweave.id
+    },
+    stateRestart () {
+      return this.$store.state.restart.restarting
     }
   },
   methods: {
@@ -99,7 +99,9 @@ export default {
       this.$store.commit('arweave/confirming', false)
       this.$store.commit('arweave/confirmed', false)
       this.$store.commit('arweave/id', false)
-      this.$store.commit('arweave/error', false)
+      this.$store.commit('arweave/error', true)
+
+      this.$store.commit('restart/restarting', true)
 
       removeTransactionId()
     }
