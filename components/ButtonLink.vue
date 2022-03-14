@@ -6,6 +6,8 @@
     :href="link"
     rel="noopener noreferrer"
     target="_blank"
+    :small="small"
+    :outlined="outlined"
   >
     <v-icon
       v-if="icon.length > 0"
@@ -34,6 +36,14 @@ export default {
       required: false,
       type: String,
       default: ''
+    },
+    small: {
+      required: false,
+      type: Boolean
+    },
+    outlined: {
+      require: false,
+      type: Boolean
     }
   }
 }
