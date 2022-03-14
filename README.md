@@ -55,6 +55,8 @@ https://permatweet.netlify.app/
 - if there is an error in "getAllTransaction" when checking after getting tweet, we need to inform user and disable store button
 - when pressing "Get tweet", we make a gql query to see if tweet is already there. post status message during that event.
 - bind input state. when reset input state, input still has value
+- implement PSC
+- make data that is saved anonymous
 
 ## Work log
 Friday, 11.03.2022, 5h
