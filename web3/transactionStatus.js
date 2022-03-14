@@ -50,8 +50,6 @@ export default async (trxId, store) => {
     return await _checkStatus()
   } catch (e) {
     console.log('-->> arweave: error while checking confirmations')
-    console.log(e)
-
-    return false
+    throw (new Error(e))
   }
 }
