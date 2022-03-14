@@ -18,7 +18,7 @@
         <span>Tweet author: {{ tweetContent.data.author_id }}</span> <span>aka</span> <span>{{ tweetContent.includes.users[0].username }}</span>
       </p>
       <p>
-        Tweet created: <date>{{ tweetContent.data.created_at }}</date>, Tweet permanently saved: <date>CURRENT DATE/TIME</date>
+        Tweet created: <time :datetime="tweetContent.data.created_at">{{ tweetContent.data.created_at }}</time>, Tweet permanently saved: <time datetime="">CURRENT DATE/TIME</time>
       </p>
     </article>
   </div>
