@@ -50,11 +50,9 @@ https://permatweet.netlify.app/
 - add favicon
 - add date field from tweet as transaction tag
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
-- "CAUTION; request is not finished yet...". happens if a request get's a timeout, like posting the transaction, or status checking. can be simulated by setting a timeout of 50 for example, in the arweave config
 - after getting tweet, check price for transaction and inform user
 - if there is an error in "getAllTransaction" when checking after getting tweet, we need to inform user and disable store button
 - when pressing "Get tweet", we make a gql query to see if tweet is already there. post status message during that event.
-- bind input state. when reset input state, input still has value
 - implement PSC
 - make data that is saved anonymous
 
