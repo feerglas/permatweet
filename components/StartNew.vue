@@ -88,6 +88,8 @@ export default {
       this.$store.commit('twitter/fetchError', false)
       this.$store.commit('twitter/fetching', false)
       this.$store.commit('twitter/tweetContentDocument', false)
+      this.$store.commit('twitter/tweetContentComponent', false)
+      this.$store.commit('twitter/tweetData', false)
       this.$store.commit('twitter/tweetId', false)
       this.$store.commit('twitter/tweetAlreadySaved', false)
 
