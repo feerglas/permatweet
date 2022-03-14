@@ -58,7 +58,7 @@
 
 <script>
 
-import { removeTransactionId } from '../localStorage'
+import localStorage from '../localStorage'
 
 export default {
   name: 'StartNew',
@@ -105,7 +105,7 @@ export default {
 
       this.$store.commit('restart/restarting', true)
 
-      removeTransactionId()
+      localStorage.transactionId.remove()
     }
   }
 }

@@ -2,30 +2,56 @@ const localStorageKeys = {
   transactionId: 'transactionId'
 }
 
-export const setTranscationId = (id) => {
+// ==========================================
+// Generic local storage handling
+// ==========================================
+const setItem = (item, value) => {
   if (!process.browser) {
     return
   }
 
-  if (!id) {
+  if (!value) {
     return
   }
 
-  window.localStorage.setItem(localStorageKeys.transactionId, id)
+  window.localStorage.setItem(item, value)
 }
 
-export const getTranscationId = () => {
+const getItem = (item) => {
   if (!process.browser) {
     return false
   }
 
-  return window.localStorage.getItem(localStorageKeys.transactionId)
+  return window.localStorage.getItem(item)
 }
 
-export const removeTransactionId = () => {
+const removeItem = (item) => {
   if (!process.browser) {
     return false
   }
 
-  window.localStorage.removeItem(localStorageKeys.transactionId)
+  window.localStorage.removeItem(item)
+}
+
+// ==========================================
+// transactionId
+// ==========================================
+const setTranscationId = (id) => {
+  setItem(localStorageKeys.transactionId, id)
+}
+
+const getTranscationId = () => {
+  return getItem(localStorageKeys.transactionId)
+}
+
+const removeTransactionId = () => {
+  removeItem(localStorageKeys.transactionId)
+}
+
+export default {
+  transactionId: {
+    set: setTranscationId,
+    get: getTranscationId,
+    remove: removeTransactionId
+  }
 }

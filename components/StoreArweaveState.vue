@@ -10,10 +10,7 @@
 
 <script>
 import checkStatus from '../web3/transactionStatus'
-import {
-  getTranscationId,
-  removeTransactionId
-} from '../localStorage'
+import localStorage from '../localStorage'
 
 export default {
   name: 'StoreArweaveState',
@@ -47,7 +44,7 @@ export default {
           console.log('finish checking')
 
           if (this.confirmed) {
-            removeTransactionId()
+            localStorage.transactionId.remove()
           }
         } catch (err) {
           console.log(err)
@@ -56,7 +53,7 @@ export default {
     }
   },
   created () {
-    const transactionId = getTranscationId()
+    const transactionId = localStorage.transactionId.get()
 
     if (transactionId) {
       this.$store.commit('arweave/id', transactionId)

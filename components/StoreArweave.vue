@@ -25,7 +25,7 @@
 <script>
 import storeOnArweave from '../web3/storeTransaction'
 import config from '../web3/config'
-import { setTranscationId } from '../localStorage'
+import localStorage from '../localStorage'
 
 export default {
   name: 'StoreArweave',
@@ -67,7 +67,7 @@ export default {
         const trxId = await storeOnArweave(this.tweetContentDocument, this.tweetId)
         this.$store.commit('arweave/storing', false)
         this.$store.commit('arweave/id', trxId)
-        setTranscationId(trxId)
+        localStorage.transactionId.set(trxId)
       } catch (e) {
         console.log(e)
         this.$store.commit('arweave/storing', false)
