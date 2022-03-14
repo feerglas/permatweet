@@ -5,7 +5,7 @@
     </p>
 
     <p v-if="!queryingTrxCount && trxCount">
-      {{ trxCount }} tweets in total have been saved with this tool.
+      {{ trxCount }} tweets have already been saved with this tool.
     </p>
   </div>
 </template>
