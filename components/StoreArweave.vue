@@ -16,7 +16,7 @@
 
     <div v-if="id">
       <p>The info was submitted to the blockchain with the transaction id: {{ id }}</p>
-      <p>After the network has confirmed the transaction, the saved tweet will be available here - forever:</p>
+      <p>Miners are still busy verifing your transaction, to make sure your tweet will be saved - forever. You should already able to see it here:</p>
       <a :href="arweaveUrl" rel="noopener noreferrer" target="_blank">{{ arweaveUrl }}</a>
     </div>
   </div>
