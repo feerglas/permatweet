@@ -21,7 +21,7 @@ export default {
     port: 443,
     protocol: 'https',
     timeout: 60000,
-    logging: true
+    logging: false
   },
   arweaveNet: 'https://arweave.net'
 }
