@@ -47,7 +47,6 @@ https://permatweet.netlify.app/
 
 ## Todo
 - Download Google Webfont and bundle together with app
-- add favicon
 - add date field from tweet as transaction tag
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
 - after getting tweet, check price for transaction and inform user
