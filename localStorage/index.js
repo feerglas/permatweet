@@ -1,5 +1,6 @@
 const localStorageKeys = {
-  transactionId: 'transactionId'
+  transactionId: 'transactionId',
+  tweetId: 'tweetId'
 }
 
 // ==========================================
@@ -36,11 +37,11 @@ const removeItem = (item) => {
 // ==========================================
 // transactionId
 // ==========================================
-const setTranscationId = (id) => {
+const setTransactionId = (id) => {
   setItem(localStorageKeys.transactionId, id)
 }
 
-const getTranscationId = () => {
+const getTransactionId = () => {
   return getItem(localStorageKeys.transactionId)
 }
 
@@ -48,10 +49,30 @@ const removeTransactionId = () => {
   removeItem(localStorageKeys.transactionId)
 }
 
+// ==========================================
+// tweetId
+// ==========================================
+const setTweetId = (id) => {
+  setItem(localStorageKeys.tweetId, id)
+}
+
+const getTweetId = () => {
+  return getItem(localStorageKeys.tweetId)
+}
+
+const removeTweetId = () => {
+  removeItem(localStorageKeys.tweetId)
+}
+
 export default {
   transactionId: {
-    set: setTranscationId,
-    get: getTranscationId,
+    set: setTransactionId,
+    get: getTransactionId,
     remove: removeTransactionId
+  },
+  tweetId: {
+    set: setTweetId,
+    get: getTweetId,
+    remove: removeTweetId
   }
 }
