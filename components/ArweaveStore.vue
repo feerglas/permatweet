@@ -6,6 +6,9 @@
       <v-card-title>Store tweet</v-card-title>
 
       <v-card-text>
+        <p>
+          Is this the tweet you want to store? Forever? Great, go ahead and store it!
+        </p>
         <TweetView />
 
         <v-btn
