@@ -22,5 +22,6 @@ export default {
     protocol: 'https',
     timeout: 60000,
     logging: true
-  }
+  },
+  arweaveNet: 'https://arweave.net'
 }
