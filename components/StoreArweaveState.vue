@@ -45,6 +45,7 @@ export default {
 
           if (this.confirmed) {
             localStorage.transactionId.remove()
+            localStorage.tweetId.remove()
           }
         } catch (err) {
           console.log(err)
