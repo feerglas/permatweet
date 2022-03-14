@@ -106,6 +106,7 @@ export default {
       this.$store.commit('restart/restarting', true)
 
       localStorage.transactionId.remove()
+      localStorage.tweetId.remove()
     }
   }
 }
