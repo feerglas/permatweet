@@ -1,13 +1,13 @@
 <template>
-  <div v-if="tweetContentDocument" v-html="tweetContentDocument" />
+  <div v-if="tweetContentComponent" v-html="tweetContentComponent" />
 </template>
 
 <script>
 export default {
   name: 'TweetView',
   computed: {
-    tweetContentDocument () {
-      return this.$store.state.twitter.tweetContentDocument
+    tweetContentComponent () {
+      return this.$store.state.twitter.tweetContentComponent
     }
   }
 }
