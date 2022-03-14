@@ -4,7 +4,7 @@
       elevation="2"
       large
       x-large
-      :disabled="!tweetContent || storing || confirming || tweetFetching || tweetAlreadySaved !== false"
+      :disabled="!tweetContentDocument || storing || confirming || tweetFetching || tweetAlreadySaved !== false"
       @click="store"
     >
       Store tweet
@@ -39,8 +39,8 @@ export default {
     storing () {
       return this.$store.state.arweave.storing
     },
-    tweetContent () {
-      return this.$store.state.twitter.tweetContent
+    tweetContentDocument () {
+      return this.$store.state.twitter.tweetContentDocument
     },
     tweetId () {
       return this.$store.state.twitter.tweetId
@@ -58,7 +58,7 @@ export default {
         this.$store.commit('arweave/storing', true)
         this.$store.commit('arweave/error', false)
         this.$store.commit('arweave/id', false)
-        const trxId = await storeOnArweave(this.tweetContent, this.tweetId)
+        const trxId = await storeOnArweave(this.tweetContentDocument, this.tweetId)
         this.$store.commit('arweave/storing', false)
         this.$store.commit('arweave/id', trxId)
         setTranscationId(trxId)

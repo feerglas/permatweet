@@ -24,7 +24,7 @@ export default (data, isForDocument) => {
       <span>Tweet author: ${data.data.author_id}</span> <span>aka</span> <span>${data.includes.users[0].username}</span>
     </p>
     <p>
-      Tweet created: <time :datetime="tweetContent.data.created_at">${data.data.created_at}</time>, Tweet permanently saved: <time datetime="">CURRENT DATE/TIME</time>
+      Tweet created: <time :datetime="${data.data.created_at}">${data.data.created_at}</time>, Tweet permanently saved: <time datetime="">CURRENT DATE/TIME</time>
     </p>
   </article>
   `

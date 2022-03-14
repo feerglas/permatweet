@@ -1,7 +1,7 @@
 export const state = () => ({
   fetchError: false,
   fetching: false,
-  tweetContent: false,
+  tweetContentDocument: false,
   tweetId: false,
   tweetAlreadySaved: false
 })
@@ -13,8 +13,8 @@ export const mutations = {
   fetching (state, isFetching) {
     state.fetching = isFetching
   },
-  tweetContent (state, content) {
-    state.tweetContent = content
+  tweetContentDocument (state, content) {
+    state.tweetContentDocument = content
   },
   tweetId (state, id) {
     state.tweetId = id

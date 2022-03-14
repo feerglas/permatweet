@@ -43,8 +43,8 @@ export default {
     fetching () {
       return this.$store.state.twitter.fetching
     },
-    tweetContent () {
-      return this.$store.state.twitter.tweetContent
+    tweetContentDocument () {
+      return this.$store.state.twitter.tweetContentDocument
     },
     tweetAlreadySaved () {
       return this.$store.state.twitter.tweetAlreadySaved
@@ -60,7 +60,7 @@ export default {
     async getTweet () {
       this.$store.commit('twitter/fetchError', false)
       this.$store.commit('twitter/fetching', true)
-      this.$store.commit('twitter/tweetContent', false)
+      this.$store.commit('twitter/tweetContentDocument', false)
       this.$store.commit('twitter/tweetAlreadySaved', false)
 
       try {
@@ -94,7 +94,7 @@ export default {
 
         const renderedTweet = renderTweet(response, true)
 
-        this.$store.commit('twitter/tweetContent', renderedTweet)
+        this.$store.commit('twitter/tweetContentDocument', renderedTweet)
       } catch (error) {
         this.$store.commit('twitter/fetching', false)
         this.$store.commit('twitter/fetchError', true)
