@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-card
-      elevation="2"
-    >
+    <v-card>
       <v-card-title>Get Tweet</v-card-title>
 
       <v-card-text>
@@ -106,4 +104,5 @@ export default {
 </script>
 
 <style>
+
 </style>

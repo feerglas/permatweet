@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-card
-      elevation="2"
-    >
+    <v-card>
       <v-card-title>Store tweet</v-card-title>
 
       <v-card-text>

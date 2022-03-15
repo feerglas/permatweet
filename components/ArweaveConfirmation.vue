@@ -1,8 +1,6 @@
 <template>
   <div v-if="trxId && tweetData">
-    <v-card
-      elevation="2"
-    >
+    <v-card>
       <v-card-title>Confirmation</v-card-title>
 
       <v-card-text>
