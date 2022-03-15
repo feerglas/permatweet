@@ -34,7 +34,8 @@ export default {
     baseURL: '/'
   },
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
+    customVariables: ['~/assets/scss/index.scss'],
     theme: {
       dark: false,
       themes: {
