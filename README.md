@@ -58,3 +58,42 @@ https://permatweet.netlify.app/
 Friday, 11.03.2022, 5h
 Saturday, 12.03.2022, 8h
 Sunday, 13.03.2022, 8h
+Monday, 14.03.2022, 5h
+
+## General PST/PSC info (Profit Sharing Community/Token)
+
+Create a PSC: https://community.xyz/
+
+Smartweave Info: https://arwiki.wiki/#/en/smartweave
+
+Smartweave Contract Guide: https://github.com/ArweaveTeam/SmartWeave/blob/master/CONTRACT-GUIDE.md
+
+Smartweave Examples: https://github.com/ArweaveTeam/SmartWeave/tree/master/examples
+
+Create PST Guide: https://github.com/ArweaveTeam/SmartWeave/blob/master/CREATE-PST.md
+
+Info about the community.xyz smart contract:
+https://github.com/CommunityXYZ/contract
+
+JS-Library to interact with community.xyz contract
+https://github.com/CommunityXYZ/community-js
+
+## Permatweet PST
+
+Ticker Symbol: PET
+
+## Permatweet PSC
+
+The PSC is owned by this address: ss2NwM4zojZRxJrKO6-WgINoVlibGhhSEKpUgfTBFtg
+
+Permatweet PSC Contract Address:
+X17XU4tx8Z-jnTcwv4-e8-4SxB9ihhyF8EfyUGGLRAc
+https://viewblock.io/arweave/address/X17XU4tx8Z-jnTcwv4-e8-4SxB9ihhyF8EfyUGGLRAc
+
+The Logo for the the PSC is deployed here:
+http://arweave.net/PwLnzYGJqtBpJA68xqVGBHb_CzVGTVht4vmMHPo001A
+
+Community can be viewed here:
+https://community.xyz/#X17XU4tx8Z-jnTcwv4-e8-4SxB9ihhyF8EfyUGGLRAc
+
+
