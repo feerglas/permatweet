@@ -1,3 +1,9 @@
+/*
+GraphQL Playground for Arweave: https://arweave.net/graphql
+Documentation for ArDB: https://github.com/textury/ardb
+Arweave GraphQl Api: https://gql-guide.vercel.app/
+*/
+
 import Arweave from 'arweave'
 import ArDB from 'ardb'
 import config from './config'
