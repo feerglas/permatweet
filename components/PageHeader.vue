@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h1>Permatweet</h1>
-    <p>Store tweets on the Arweave Blockchain on demand - forever...</p>
+    <h1 class="text-h3">
+      Permatweet
+    </h1>
+    <p class="lead">
+      Store tweets on the Arweave Blockchain on demand - forever...
+    </p>
   </div>
 </template>
 
@@ -12,3 +16,9 @@ export default {
 }
 
 </script>
+
+<style>
+p.lead {
+  margin-bottom: 0;
+}
+</style>
