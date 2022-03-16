@@ -1,4 +1,5 @@
 // import colors from 'vuetify/es5/util/colors'
+import ogProperties from './helpers/ogProperties'
 
 export default {
   target: 'static',
@@ -11,15 +12,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-      { property: 'og:title', content: 'permatweet' },
-      { property: 'og:image', content: 'http://arweave.net/PwLnzYGJqtBpJA68xqVGBHb_CzVGTVht4vmMHPo001A' },
-      { property: 'og:url', content: 'https://permatweet.netlify.app/' },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:description', content: 'Store tweets on the Arweave Blockchain on demand - forever...' },
-      { property: 'og:locale', content: 'en_US' },
-      { property: '', content: '' }
+      ...ogProperties
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
