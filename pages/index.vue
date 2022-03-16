@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="8" lg="6">
-      <PageHeader />
+      <PageHeader class="mt-6" />
 
       <v-divider class="my-12" />
 
