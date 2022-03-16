@@ -8,25 +8,25 @@ export default (data, isForDocument) => {
       window.permatweet = {};
       window.permatweet.rawData = ${JSON.stringify(data)};
     </script>
-  </head>
-
+    </head>
   <body>
 `
 
   const append = '</body></html>'
 
   const template = `
-  <article style="border: 1px solid #ccc; border-radius: 0.5rem; margin-block-start: 7em; margin-block-end: 7em; padding: 1rem; transform: skew(-3deg, 9deg); box-shadow: 1.25rem -0.5rem 2rem -0.7rem rgba(255,0,183,0.83)">
-    <h1>
+  <article class='permatweet' style='--permatweet-box-shadow-color: rgba(255,0,183,0); font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif; box-shadow: .75rem -0.5rem 2rem -.9rem var(--permatweet-box-shadow-color); border: calc(1rem/9) solid #ccc; border-radius: 0.5rem; margin-block-start: 3rem; margin-block-end: 3rem; padding: 1rem;'>
+    <h1 class='permatweet__content' style='padding-block-end: 0.85rem;'>
       <!-- We need to create links/anchor tags if there are links within the tweet -->
       ${data.data.text}
     </h1>
-    <p>
-      <span>Tweet author: ${data.data.author_id}</span> <span>aka</span> <span>${data.includes.users[0].username}</span>
-    </p>
-    <p>
-      Tweet created: <time :datetime="${data.data.created_at}">${data.data.created_at}</time>, Tweet permanently saved: <time datetime="">CURRENT DATE/TIME</time>
-    </p>
+    <div class='permatweet__meta' style='font-size: 0.85rem; color: #000;'>
+    <span>Tweet author: ${data.data.author_id}</span> <span>aka</span> <span>${data.includes.users[0].username}</span>
+    <span>
+      <span> | Tweet created: <time datetime="${data.data.created_at}">${data.data.created_at}</time></span>
+      <span> | Tweet permanently saved: <time datetime="">CURRENT DATE/TIME</time></span>
+    </span>
+  </div>
   </article>
   `
 
