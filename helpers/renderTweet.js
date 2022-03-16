@@ -1,3 +1,5 @@
+import { formatDate } from './date'
+
 export default (data, isForDocument) => {
   const prepend = `
 <!doctype html>
@@ -23,8 +25,8 @@ export default (data, isForDocument) => {
     <div class='permatweet__meta' style='font-size: 0.85rem; color: #000;'>
     <span>Tweet author: ${data.data.author_id}</span> <span>aka</span> <span>${data.includes.users[0].username}</span>
     <span>
-      <span> | Tweet created: <time datetime="${data.data.created_at}">${data.data.created_at}</time></span>
-      <span> | Tweet permanently saved: <time datetime="${new Date()}">${new Date()}</time></span>
+      <span> | Tweet created: <time datetime="${formatDate(new Date(data.data.created_at))}">${formatDate(new Date(data.data.created_at))}</time></span>
+      <span> | Tweet permanently saved: <time datetime="${formatDate(new Date())}">${formatDate(new Date())}</time></span>
     </span>
   </div>
   </article>
