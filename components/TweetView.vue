@@ -1,6 +1,5 @@
 <template>
   <div
-    class="px-8"
     v-html="tweetContentComponent"
   />
 </template>
