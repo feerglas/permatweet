@@ -94,7 +94,7 @@ X17XU4tx8Z-jnTcwv4-e8-4SxB9ihhyF8EfyUGGLRAc
 Explore CurrentContract: https://viewblock.io/arweave/address/X17XU4tx8Z-jnTcwv4-e8-4SxB9ihhyF8EfyUGGLRAc
 
 The Logo for the the PSC is deployed here:
-http://arweave.net/PwLnzYGJqtBpJA68xqVGBHb_CzVGTVht4vmMHPo001A
+https://arweave.net/PwLnzYGJqtBpJA68xqVGBHb_CzVGTVht4vmMHPo001A
 
 Community can be viewed here:
 https://community.xyz/#X17XU4tx8Z-jnTcwv4-e8-4SxB9ihhyF8EfyUGGLRAc
