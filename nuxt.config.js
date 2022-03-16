@@ -13,7 +13,6 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-
       { property: 'og:title', content: 'permatweet' },
       { property: 'og:image', content: 'http://arweave.net/PwLnzYGJqtBpJA68xqVGBHb_CzVGTVht4vmMHPo001A' },
       { property: 'og:url', content: 'https://permatweet.netlify.app/' },
