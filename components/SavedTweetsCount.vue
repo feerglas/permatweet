@@ -1,13 +1,12 @@
 <template>
   <div>
     <v-chip
-      class="ma-2"
-      color="green"
+      color="primary"
       text-color="white"
     >
       <v-avatar
         left
-        class="green darken-4"
+        class="primary darken-4"
       >
         <v-skeleton-loader
           v-if="queryingTrxCount"
@@ -18,7 +17,7 @@
           {{ trxCount }}
         </span>
       </v-avatar>
-      tweets have already been saved with this tool.
+      saved tweets
     </v-chip>
   </div>
 </template>
