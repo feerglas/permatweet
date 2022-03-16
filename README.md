@@ -51,10 +51,9 @@ https://permatweet.netlify.app/
 - integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
 - after getting tweet, check price for transaction and inform user
 - if there is an error in "getAllTransaction" when checking after getting tweet, we need to inform user and disable store button
-- implement PSC
+- implement PSC/PST
 - make data that is saved anonymous
 - Enable Dependabot
-- Add open graph properties to html head
 
 ## Work log
 Friday, 11.03.2022, 5h
