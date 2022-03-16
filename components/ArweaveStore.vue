@@ -7,6 +7,9 @@
         <p>
           Is this the tweet you want to store? Forever? Great, go ahead and store it!
         </p>
+        <p>
+          Tweet id: {{ tweetId }}
+        </p>
         <TweetView />
 
         <v-btn
