@@ -26,9 +26,7 @@
         class="my-12"
       />
 
-      <p class="my-12">
-        Keep in mind: you need the ArConnect Browser Extension installed for this App to work. You can get it here: <a href="https://www.arconnect.io/" rel="noopener noreferrer" target="_blank">https://www.arconnect.io/</a>
-      </p>
+      <CheckWallet />
     </v-col>
   </v-row>
 </template>
