@@ -1,3 +1,4 @@
+import ogProperties from './ogProperties'
 import { formatDate } from './date'
 import { ellipsisMiddle } from './ellipsis'
 
@@ -18,13 +19,17 @@ export default (data, isForDocument) => {
     delete user.entities
   })
 
-  console.log(data)
+  const _ogProperties = ogProperties.map((item) => {
+    return `<meta property="${item.property}" content="${item.content}">`
+  }).join('')
 
   const prepend = `
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
+    ${_ogProperties}
+    <link rel="icon" type="image/x-icon" href="https://arweave.net/PwLnzYGJqtBpJA68xqVGBHb_CzVGTVht4vmMHPo001A">
     <script type="text/javascript">
       window.permatweet = {};
       window.permatweet.rawData = ${JSON.stringify(data)};
@@ -48,8 +53,11 @@ export default (data, isForDocument) => {
       <span> | Tweet permanently saved: <time datetime="${today}">${today}</time></span>
     </span>
   </div>
+  <div class='permatweet__metrics' style='font-size: 0.85rem; color: #000; margin-block-start: 0.425rem;'>
+    ${data.data.public_metrics.like_count} likes | ${data.data.public_metrics.quote_count} quotes | ${data.data.public_metrics.reply_count} replies | ${data.data.public_metrics.retweet_count} retweets
+  </div>
 </article>
-  `
+`
 
   if (isForDocument) {
     return `
