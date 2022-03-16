@@ -19,8 +19,6 @@
       <!-- Screen 3: show confirmation -->
       <ArweaveConfirmation />
 
-      <SavedTweetsCount class="my-12" />
-
       <StartNew
         v-if="tweetData"
         class="my-12"
