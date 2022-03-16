@@ -1,12 +1,25 @@
 <template>
   <div>
-    <p v-if="queryingTrxCount">
-      Fetching count...
-    </p>
-
-    <p v-if="!queryingTrxCount && trxCount">
-      {{ trxCount }} tweets have already been saved with this tool.
-    </p>
+    <v-chip
+      class="ma-2"
+      color="green"
+      text-color="white"
+    >
+      <v-avatar
+        left
+        class="green darken-4"
+      >
+        <v-skeleton-loader
+          v-if="queryingTrxCount"
+          class="mx-auto"
+          type="avatar"
+        />
+        <span v-if="!queryingTrxCount && trxCount">
+          {{ trxCount }}
+        </span>
+      </v-avatar>
+      tweets have already been saved with this tool.
+    </v-chip>
   </div>
 </template>
 
@@ -23,8 +36,10 @@ export default {
       return this.$store.state.graphql.trxCount
     }
   },
-  async mounted () {
+  beforeCreate () {
     this.$store.commit('graphql/queryingTrxCount', true)
+  },
+  async mounted () {
     const allTransactions = await getAllTransactions()
 
     this.$store.commit('graphql/queryingTrxCount', false)
