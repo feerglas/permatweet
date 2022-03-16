@@ -1,4 +1,5 @@
 import { formatDate } from './date'
+import { ellipsisMiddle } from './ellipsis'
 
 export default (data, isForDocument) => {
   const prepend = `
@@ -23,7 +24,7 @@ export default (data, isForDocument) => {
       ${data.data.text}
     </h1>
     <div class='permatweet__meta' style='font-size: 0.85rem; color: #000;'>
-    <span>Tweet author: ${data.data.author_id}</span> <span>aka</span> <span>${data.includes.users[0].username}</span>
+    <span>Tweet author: ${ellipsisMiddle(data.data.author_id)}</span> <span>aka</span> <span>${ellipsisMiddle(data.includes.users[0].username)}</span>
     <span>
       <span> | Tweet created: <time datetime="${formatDate(new Date(data.data.created_at))}">${formatDate(new Date(data.data.created_at))}</time></span>
       <span> | Tweet permanently saved: <time datetime="${formatDate(new Date())}">${formatDate(new Date())}</time></span>
