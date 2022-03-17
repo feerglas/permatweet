@@ -44,23 +44,13 @@ The App ist automatically build and deployed on netlify:
 
 https://permatweet.netlify.app/
 
-
-## Todo
-- Download Google Webfont and bundle together with app
-- add date field from tweet as transaction tag
-- integrate https://github.com/textury/arlocal as  local test-net for better dev-experience
-- after getting tweet, check price for transaction and inform user
-- if there is an error in "getAllTransaction" when checking after getting tweet, we need to inform user and disable store button
-- implement PSC/PST
-- make data that is saved anonymous
-- Enable Dependabot
-
 ## Work log
 Friday, 11.03.2022, 5h
 Saturday, 12.03.2022, 8h
 Sunday, 13.03.2022, 8h
 Monday, 14.03.2022, 5h
 Tuesday, 15.03.2022, 2h
+Wednesday, 16.03.2022, 4h
 
 ## General PST/PSC info (Profit Sharing Community/Token)
 
