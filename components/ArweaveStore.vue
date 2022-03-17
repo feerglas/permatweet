@@ -49,6 +49,9 @@ export default {
     tweetContentDocument () {
       return this.$store.state.twitter.tweetContentDocument
     },
+    tweetData () {
+      return this.$store.state.twitter.tweetData
+    },
     tweetId () {
       return this.$store.state.twitter.tweetId
     }
@@ -59,7 +62,7 @@ export default {
         this.$store.commit('arweave/storing', true)
         this.$store.commit('arweave/error', false)
         this.$store.commit('arweave/id', false)
-        const trxId = await storeOnArweave(this.tweetContentDocument, this.tweetId)
+        const trxId = await storeOnArweave(this.tweetContentDocument, this.tweetId, this.tweetData)
         this.$store.commit('arweave/storing', false)
         this.$store.commit('arweave/id', trxId)
       } catch (e) {
