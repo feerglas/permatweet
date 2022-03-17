@@ -9,7 +9,9 @@ export default {
         'Yves Tscherry',
         'Michael Zumstein'
       ],
-      'Tweet-Id': ''
+      'Tweet-Id': '',
+      'Tweet-Saved-Date': '',
+      'Tweet-Created-Date': ''
     },
     minAmountOfConfirmations: 3
   },
