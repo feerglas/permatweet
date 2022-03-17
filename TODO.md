@@ -14,3 +14,4 @@
 - Explain why we build the tool
 - Explain why we anonymise the data
 - new page: list all saved tweets
+- add semantic release, commit-lint
