@@ -10,7 +10,6 @@ export const transactionTagKeys = {
   tweetAuthorId: 'Tweet-Author-Id',
   tweetAuthorName: 'Tweet-Author-Name',
   tweetContentPreview: 'Tweet-Content-Preview'
-
 }
 
 const transactionTags = {}
