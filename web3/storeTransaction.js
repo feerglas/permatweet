@@ -22,7 +22,7 @@ export default async (data, tweetId, _tweetData) => {
     config.transaction.tags[transactionTagKeys.tweetCreatedDate] = (new Date(tweetData.data.created_at)).getTime()
     config.transaction.tags[transactionTagKeys.tweetAuthorId] = tweetData.data.author_id
     config.transaction.tags[transactionTagKeys.tweetAuthorName] = tweetData.includes.users[0].name
-    config.transaction.tags[transactionTagKeys.tweetContentPreview] = tweetData.data.text.substring(0, 10)
+    config.transaction.tags[transactionTagKeys.tweetContentPreview] = `${tweetData.data.text.substring(0, 20)} ...`
 
     Object.keys(config.transaction.tags).forEach((key) => {
       const value = config.transaction.tags[key]
