@@ -12,3 +12,4 @@
 - Explain why we anonymise the data
 - new page: list all saved tweets
 - add semantic release, commit-lint
+- scroll to top after saving tweet and switching to confirmation state
