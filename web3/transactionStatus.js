@@ -1,6 +1,6 @@
 import Arweave from 'arweave'
 import delay from '../helpers/promisedDelay'
-import config from './config'
+import { config } from './config'
 
 export default async (trxId, store) => {
   const arweave = Arweave.init(config.arweave)
