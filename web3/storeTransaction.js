@@ -1,5 +1,8 @@
 import Arweave from 'arweave'
-import config from './config'
+import {
+  config,
+  transactionTagKeys
+} from './config'
 
 export default async (data, tweetId, tweetData) => {
   try {
@@ -11,9 +14,9 @@ export default async (data, tweetId, tweetData) => {
     })
 
     // add tags
-    config.transaction.tags['Tweet-Id'] = tweetId
-    config.transaction.tags['Tweet-Saved-Date'] = (new Date()).getTime()
-    config.transaction.tags['Tweet-Created-Date'] = (new Date(tweetData.data.created_at)).getTime()
+    config.transaction.tags[transactionTagKeys.tweetId] = tweetId
+    config.transaction.tags[transactionTagKeys.tweetSavedDate] = (new Date()).getTime()
+    config.transaction.tags[transactionTagKeys.tweetCreatedDate] = (new Date(tweetData.data.created_at)).getTime()
     Object.keys(config.transaction.tags).forEach((key) => {
       const value = config.transaction.tags[key]
       transaction.addTag(key, value)
