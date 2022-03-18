@@ -1,18 +1,27 @@
-export default {
+export const transactionTagKeys = {
+  permatweetIntent: 'Permatweet-Intent',
+  appVersion: 'App-Version',
+  appName: 'App-Name',
+  contentType: 'Content-Type',
+  authors: 'Authors',
+  tweetId: 'Tweet-Id',
+  tweetSavedDate: 'Tweet-Saved-Date',
+  tweetCreatedDate: 'Tweet-Created-Date'
+}
+
+const transactionTags = {}
+transactionTags[transactionTagKeys.permatweetIntent] = 'saved-tweet'
+transactionTags[transactionTagKeys.appVersion] = '0.0.1'
+transactionTags[transactionTagKeys.appName] = 'permatweet'
+transactionTags[transactionTagKeys.contentType] = 'text/html'
+transactionTags[transactionTagKeys.authors] = 'Yves Tscherry, Michael Zumstein'
+transactionTags[transactionTagKeys.tweetId] = ''
+transactionTags[transactionTagKeys.tweetSavedDate] = ''
+transactionTags[transactionTagKeys.tweetCreatedDate] = ''
+
+export const config = {
   transaction: {
-    tags: {
-      'Permatweet-Intent': 'saved-tweet',
-      'App-Version': '0.0.1',
-      'App-Name': 'permatweet',
-      'Content-Type': 'text/html',
-      Authors: [
-        'Yves Tscherry',
-        'Michael Zumstein'
-      ],
-      'Tweet-Id': '',
-      'Tweet-Saved-Date': '',
-      'Tweet-Created-Date': ''
-    },
+    tags: transactionTags,
     minAmountOfConfirmations: 3
   },
   requests: {
