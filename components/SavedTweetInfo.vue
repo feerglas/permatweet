@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import config from '../web3/config'
+import { config } from '../web3/config'
 
 export default {
   name: 'SavedTweetInfo',
