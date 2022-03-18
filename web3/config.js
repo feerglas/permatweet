@@ -6,7 +6,11 @@ export const transactionTagKeys = {
   authors: 'Authors',
   tweetId: 'Tweet-Id',
   tweetSavedDate: 'Tweet-Saved-Date',
-  tweetCreatedDate: 'Tweet-Created-Date'
+  tweetCreatedDate: 'Tweet-Created-Date',
+  tweetAuthorId: 'Tweet-Author-Id',
+  tweetAuthorName: 'Tweet-Author-Name',
+  tweetContentPreview: 'Tweet-Content-Preview'
+
 }
 
 const transactionTags = {}
@@ -18,6 +22,9 @@ transactionTags[transactionTagKeys.authors] = 'Yves Tscherry, Michael Zumstein'
 transactionTags[transactionTagKeys.tweetId] = ''
 transactionTags[transactionTagKeys.tweetSavedDate] = ''
 transactionTags[transactionTagKeys.tweetCreatedDate] = ''
+transactionTags[transactionTagKeys.tweetAuthorId] = ''
+transactionTags[transactionTagKeys.tweetAuthorName] = ''
+transactionTags[transactionTagKeys.tweetContentPreview] = ''
 
 export const config = {
   transaction: {
