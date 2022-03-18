@@ -1,23 +1,12 @@
 import ogProperties from './ogProperties'
 import { formatDate } from './date'
-import { ellipsisMiddle } from './ellipsis'
+import anonymiseTweetData from './anonymiseTweetData'
 
-export default (data, isForDocument) => {
+export default (_data, isForDocument) => {
   const today = formatDate(new Date())
 
-  // anonymise tweet data
-  data.data.author_id = ellipsisMiddle(data.data.author_id)
-  delete data.data.entities
-
-  // anonymise user data
-  data.includes.users.forEach((user) => {
-    user.id = ellipsisMiddle(user.id)
-    user.username = ellipsisMiddle(user.username)
-    user.name = ellipsisMiddle(user.name)
-    user.description = ellipsisMiddle(user.description)
-    delete user.profile_image_url
-    delete user.entities
-  })
+  // anonymise data
+  const data = anonymiseTweetData(_data)
 
   const _ogProperties = ogProperties.map((item) => {
     return `<meta property="${item.property}" content="${item.content}">`
