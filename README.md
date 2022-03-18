@@ -51,6 +51,7 @@ Sunday, 13.03.2022, 8h
 Monday, 14.03.2022, 5h
 Tuesday, 15.03.2022, 2h
 Wednesday, 16.03.2022, 4h
+Friday, 18.03.2022, 3h
 
 ## General PST/PSC info (Profit Sharing Community/Token)
 
