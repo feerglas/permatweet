@@ -3,6 +3,8 @@
     <v-chip
       color="primary"
       text-color="white"
+      :nuxt="true"
+      to="/savedTweets"
     >
       <v-avatar
         left
