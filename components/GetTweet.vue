@@ -32,6 +32,7 @@
 import { getAllTransactions } from '../web3/queries'
 import renderTweet from '../helpers/renderTweet'
 import { resetTwitter } from '../helpers/store'
+import { transactionTagKeys } from '../web3/config'
 
 const _getTweet = async (store, input) => {
   resetTwitter(store)
@@ -41,8 +42,10 @@ const _getTweet = async (store, input) => {
     const transactions = await getAllTransactions()
 
     transactions.forEach((trx) => {
-      trx._tags.forEach((tag) => {
-        if (tag.name === 'Tweet-Id' && tag.value === input) {
+      Object.keys(trx._tags).forEach((key) => {
+        const tag = trx._tags[key]
+
+        if (key === transactionTagKeys.tweetId && tag === input) {
           store.commit('twitter/tweetAlreadySaved', trx._id)
         }
       })
