@@ -1,24 +1,31 @@
 <template>
-  <v-data-table
-    :headers="tableHeaders"
-    :items="tableItems"
-    :single-expand="true"
-    show-expand
-    item-key="transactionId"
-    :items-per-page="50"
-    class="elevation-2"
-    :loading="loading"
-  >
-    <template #expanded-item="{ headers, item }">
-      <td :colspan="headers.length">
-        <p>
-          Link: {{ config.blockExplorer }}/{{ item.transaction._id }}<br>
-          Transaction ID: {{ item.transaction._id }}<br>
-          Transaction Owner: {{ item.transaction._owner.address }}<br>
-        </p>
-      </td>
-    </template>
-  </v-data-table>
+  <div>
+    <v-data-table
+      :headers="tableHeaders"
+      :items="tableItems"
+      :single-expand="true"
+      show-expand
+      item-key="transaction._id"
+      :items-per-page="50"
+      class="elevation-2 mb-12"
+      :loading="loading"
+    >
+      <template #expanded-item="{ headers, item }">
+        <td :colspan="headers.length">
+          <p class="pt-4">
+            Transaction ID: {{ item.transaction._id }}<br>
+            Who saved it? {{ item.transaction._owner.address }}<br>
+            <a :href="linkToBlockchain(item.transaction._id)" rel="noopener noreferrer" target="_blank">
+              View on Blockchain
+            </a><br>
+            <a :href="linkToTransaction(item.transaction._id)" rel="noopener noreferrer" target="_blank">
+              View Transaction
+            </a><br>
+          </p>
+        </td>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script>
@@ -35,8 +42,7 @@ export default {
     return {
       tableHeaders: [],
       tableItems: [],
-      loading: true,
-      config
+      loading: true
     }
   },
   async created () {
@@ -44,11 +50,11 @@ export default {
 
     this.tableHeaders = [
       {
-        text: 'Tweet created date',
+        text: 'Tweet created',
         value: 'tweetCreatedDate'
       },
       {
-        text: 'Tweet saved date',
+        text: 'Tweet saved',
         value: 'tweetSavedDate'
       },
       {
@@ -57,7 +63,7 @@ export default {
         sortable: false
       },
       {
-        text: 'Tweet author username',
+        text: 'Tweet author user',
         value: 'tweetAuthorUsername',
         sortable: false
       },
@@ -86,6 +92,14 @@ export default {
     })
 
     this.loading = false
+  },
+  methods: {
+    linkToBlockchain (id) {
+      return `${config.arweaveNet}/${id}`
+    },
+    linkToTransaction (id) {
+      return `${config.blockExplorer}/${id}`
+    }
   }
 }
 </script>
