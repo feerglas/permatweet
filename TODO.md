@@ -13,3 +13,5 @@
 - new page: list all saved tweets
 - add semantic release, commit-lint
 - scroll to top after saving tweet and switching to confirmation state
+- make tweet search a default form: hit return to search ...
+- savedTweets table: improve loading
