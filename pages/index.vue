@@ -1,10 +1,6 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="8" lg="6">
-      <PageHeader class="mt-6" />
-
-      <v-divider class="my-12" />
-
       <!-- Screen 1: get tweet -->
       <GetTweet v-if="!tweetData && !trxId" />
 
