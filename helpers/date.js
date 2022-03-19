@@ -1,4 +1,4 @@
-export const formatDate = (inputDate) => {
+export const formatDate = (inputDate, locale) => {
   const options = {
     year: 'numeric',
     month: 'long',
@@ -8,5 +8,5 @@ export const formatDate = (inputDate) => {
     second: '2-digit'
   }
 
-  return inputDate.toLocaleDateString('en-EN', options)
+  return inputDate.toLocaleDateString(locale, options)
 }
