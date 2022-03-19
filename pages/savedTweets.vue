@@ -1,5 +1,12 @@
 <template>
   <div>
+    <v-btn
+      :nuxt="true"
+      to="/"
+      class="mb-8"
+    >
+      Back to Home
+    </v-btn>
     <v-data-table
       :headers="tableHeaders"
       :items="tableItems"
