@@ -20,14 +20,24 @@
       <template #expanded-item="{ headers, item }">
         <td :colspan="headers.length">
           <p class="pt-4">
-            Transaction ID: {{ item.transaction._id }}<br>
-            Who saved it? {{ item.transaction._owner.address }}<br>
-            <a :href="linkToBlockchain(item.transaction._id)" rel="noopener noreferrer" target="_blank">
-              View on Blockchain
-            </a><br>
-            <a :href="linkToTransaction(item.transaction._id)" rel="noopener noreferrer" target="_blank">
-              View Transaction
-            </a><br>
+            Transaction ID: {{ item.transaction._id }}
+            <CopyToClipboard :text-to-copy="item.transaction._id" />
+            <br>
+
+            Who saved it? {{ item.transaction._owner.address }}
+            <CopyToClipboard :text-to-copy="item.transaction._owner.address" />
+            <br>
+
+            <ButtonLink
+              :link="linkToBlockchain(item.transaction._id)"
+              text="View Tweet"
+              icon="mdi-twitter"
+            />
+            <ButtonLink
+              :link="linkToTransaction(item.transaction._id)"
+              text="View Transaction"
+              icon="mdi-link-lock"
+            />
           </p>
         </td>
       </template>
