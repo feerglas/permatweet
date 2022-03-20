@@ -22,6 +22,7 @@ export default {
   css: [
   ],
   plugins: [
+    '~/plugins/copyClipboard'
   ],
   components: true,
   buildModules: [
