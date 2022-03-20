@@ -3,7 +3,7 @@ import { formatDate } from './date'
 import anonymiseTweetData from './anonymiseTweetData'
 
 export default (_data, isForDocument) => {
-  const today = formatDate(new Date(), 'en_EN')
+  const today = formatDate(new Date(), 'en-EN')
 
   // anonymise data
   const data = anonymiseTweetData(_data)
@@ -38,7 +38,7 @@ export default (_data, isForDocument) => {
   <div class='permatweet__meta' style='font-size: 0.85rem; color: #000;'>
     <span>Tweet author: ${data.data.author_id}</span> <span>aka</span> <span>${data.includes.users[0].username}</span>
     <span>
-      <span> | Tweet created: <time datetime="${formatDate(new Date(data.data.created_at), 'en_EN')}">${formatDate(new Date(data.data.created_at), 'en_EN')}</time></span>
+      <span> | Tweet created: <time datetime="${formatDate(new Date(data.data.created_at), 'en-EN')}">${formatDate(new Date(data.data.created_at), 'en-EN')}</time></span>
       <span> | Tweet permanently saved: <time datetime="${today}">${today}</time></span>
     </span>
   </div>
