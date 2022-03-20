@@ -54,7 +54,11 @@
 
 <script>
 
-import { resetAll } from '../helpers/store'
+import {
+  resetTwitter,
+  resetArweave,
+  resetRestart
+} from '../helpers/store'
 
 export default {
   name: 'StartNew',
@@ -66,7 +70,9 @@ export default {
   methods: {
     restart () {
       this.dialog = false
-      resetAll(this.$store)
+      resetTwitter(this.$store)
+      resetArweave(this.$store)
+      resetRestart(this.$store)
     }
   }
 }
