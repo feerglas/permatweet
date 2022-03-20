@@ -4,11 +4,12 @@
     rounded
     color="primary"
     dark
-    small
+    x-small
     outlined
+    fab
   >
     <v-icon
-      left
+      :left="text.length > 0"
       dark
     >
       mdi-content-copy
@@ -22,8 +23,9 @@ export default {
   name: 'CopyToClipboard',
   props: {
     text: {
-      required: true,
-      type: String
+      required: false,
+      type: String,
+      default: ''
     },
     textToCopy: {
       required: true,
