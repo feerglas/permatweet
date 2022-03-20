@@ -15,3 +15,5 @@
 - scroll to top after saving tweet and switching to confirmation state
 - make tweet search a default form: hit return to search ...
 - savedTweets table: improve loading
+- move hosting to permaweb. dns issue? how to update app? look at https://github.com/rekpero/ArGo
+
